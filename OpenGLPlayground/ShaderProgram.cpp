@@ -2,9 +2,6 @@
 
 #include <iostream>
 
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-
 #include "Shader.h"
 
 namespace Playground
@@ -23,6 +20,10 @@ namespace Playground
 		{
 			AttachShader(shader);
 		}
+	}
+	int ShaderProgram::GetUniformLocation(const std::string& name) const
+	{
+		return glGetUniformLocation(_id, name.c_str());
 	}
 	void ShaderProgram::LinkProgram()
 	{
