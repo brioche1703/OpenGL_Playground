@@ -71,19 +71,19 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Users\kevin\dev\OpenGL\Include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\kevin\dev\OpenGL\Projects\OpenGL_Playground\OpenGLPlayground\libs;C:\Users\kevin\dev\OpenGL\Include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Users\kevin\dev\OpenGL\Libs;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>C:\Users\kevin\dev\OpenGL\Include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\kevin\dev\OpenGL\Projects\OpenGL_Playground\OpenGLPlayground\libs;C:\Users\kevin\dev\OpenGL\Include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Users\kevin\dev\OpenGL\Libs;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Users\kevin\dev\OpenGL\Include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\kevin\dev\OpenGL\Projects\OpenGL_Playground\OpenGLPlayground\libs;C:\Users\kevin\dev\OpenGL\Include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Users\kevin\dev\OpenGL\Libs;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>C:\Users\kevin\dev\OpenGL\Include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\kevin\dev\OpenGL\Projects\OpenGL_Playground\OpenGLPlayground\libs;C:\Users\kevin\dev\OpenGL\Include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Users\kevin\dev\OpenGL\Libs;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -155,6 +155,8 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
+    <ClCompile Include="stb_image.cpp" />
+    <ClCompile Include="Texture.cpp" />
     <ClCompile Include="VertexArrayObject.cpp" />
     <ClCompile Include="VertexAttribute.cpp" />
     <ClCompile Include="VertexShader.cpp" />
@@ -164,16 +166,23 @@
     <ClInclude Include="Buffer.h" />
     <ClInclude Include="FragmentShader.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="libs\stb_image.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderProgram.h" />
+    <ClInclude Include="Texture.h" />
     <ClInclude Include="VertexArrayObject.h" />
     <ClInclude Include="VertexAttribute.h" />
     <ClInclude Include="VertexShader.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.gitignore" />
-    <None Include="shaders\shader.fs" />
-    <None Include="shaders\shader.vs" />
+    <None Include="shaders\shader_fs.glsl" />
+    <None Include="shaders\shader_vs.glsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="images\container.jpg" />
+    <Image Include="images\smiley.png" />
+    <Image Include="images\wall.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

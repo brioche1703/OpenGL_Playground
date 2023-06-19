@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <stdexcept>
+#include <stb_image.h>
 
 #include "VertexShader.h"
 #include "FragmentShader.h"
@@ -9,6 +10,7 @@
 #include "Buffer.h"
 #include "VertexAttribute.h"
 #include "VertexArrayObject.h"
+#include "Texture.h"
 
 namespace Playground
 {
@@ -50,18 +52,21 @@ namespace Playground
 	void App::GameLoop()
 	{
 		float vertices[] = {
-			// positions         // colors
-			 0.5f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f,   // bottom right
-			-0.5f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,   // bottom left
-			 0.0f,  0.5f, 0.0f,  0.0f, 0.0f, 1.0f    // top 
+			// positions          // colors           // texture coords
+			 0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // top right
+			 0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // bottom right
+			-0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // bottom left
+			-0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f    // top left 
 		};
+		
 		unsigned int indices[] = 
 		{
-			0, 1, 2
+			0, 1, 3,
+			1, 2, 3, 
 		};
 
-		VertexShader vertexShader("shaders/shader.vs");
-		FragmentShader fragmentShader("shaders/shader.fs");
+		VertexShader vertexShader("shaders/shader_vs.glsl");
+		FragmentShader fragmentShader("shaders/shader_fs.glsl");
 
 		ShaderProgram shaderProgram;
 		shaderProgram.AttachShader({ vertexShader, fragmentShader });
@@ -73,14 +78,19 @@ namespace Playground
 		Buffer VBO, EBO;
 		VertexArrayObject VAO;
 
+		Texture texture1("images/container.jpg", GL_TEXTURE_2D);
+		Texture texture2("images/smiley.png", GL_TEXTURE_2D, true);
+
 		VAO.Bind();
 		VBO.Bind(GL_ARRAY_BUFFER);
 		VBO.Data(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 		VertexAttribute vertexAttrib;
-		vertexAttrib.Set(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+		vertexAttrib.Set(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
 		vertexAttrib.Enable(0);
-		vertexAttrib.Set(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+		vertexAttrib.Set(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
 		vertexAttrib.Enable(1);
+		vertexAttrib.Set(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+		vertexAttrib.Enable(2);
 
 		EBO.Bind(GL_ELEMENT_ARRAY_BUFFER);
 		EBO.Data(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
@@ -94,6 +104,13 @@ namespace Playground
 			glClear(GL_COLOR_BUFFER_BIT);
 
 			shaderProgram.Use();
+			shaderProgram.SetUniformLocation(glUniform1i, "texture1", 0);
+			shaderProgram.SetUniformLocation(glUniform1i, "texture2", 1);
+
+			texture1.Activate(GL_TEXTURE0);
+			texture1.Bind();
+			texture2.Activate(GL_TEXTURE1);
+			texture2.Bind();
 
 			VAO.Bind();
 			glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
