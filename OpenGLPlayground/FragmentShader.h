@@ -7,6 +7,6 @@ namespace Playground
 	class FragmentShader : public Shader
 	{
 	public:
-		FragmentShader(const char* source);
+		FragmentShader(const char* sourcePath);
 	};
 }
