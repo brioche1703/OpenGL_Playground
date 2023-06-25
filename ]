@@ -52,6 +52,7 @@ namespace Playground
 		glfwSetFramebufferSizeCallback(_window, framebuffer_size_callback);
 	}
 
+
 	void App::GameLoop()
 	{
 		float vertices[] = {
@@ -98,6 +99,10 @@ namespace Playground
 		EBO.Bind(GL_ELEMENT_ARRAY_BUFFER);
 		EBO.Data(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
+		glm::mat4 transform = glm::mat4(1.0f);
+		transform = glm::rotate(transform, glm::radians(90.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+		transform = glm::scale(transform, glm::vec3(0.5f, 0.5f, 0.5f));
+
 		while (!glfwWindowShouldClose(_window))
 		{
 			_input->ProcessInput();
@@ -105,14 +110,10 @@ namespace Playground
 			glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 			glClear(GL_COLOR_BUFFER_BIT);
 
-			glm::mat4 transform = glm::mat4(1.0f);
-			transform = glm::rotate(transform, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
-			transform = glm::scale(transform, glm::vec3(0.5f, 0.5f, 0.5f));
-
 			shaderProgram.Use();
 			shaderProgram.SetUniformLocation(glUniform1i, "texture1", 0);
 			shaderProgram.SetUniformLocation(glUniform1i, "texture2", 1);
-			shaderProgram.SetUniformLocation(glUniformMatrix4fv, "transform", 1, GL_FALSE, glm::value_ptr(transform));
+			shaderProgram.SetUniformLocation(glUniformMatrix4fv, "transform", glm::value_ptr(transform));
 
 			texture1.Activate(GL_TEXTURE0);
 			texture1.Bind();
