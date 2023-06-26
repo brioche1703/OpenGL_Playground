@@ -3,26 +3,22 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-#include "Input.h"
-
 namespace Playground
 {
+	class Window;
+	class Input;
+
 	class App
 	{
 	public:
 		App();
+		~App();
 		void Init();
 		void GameLoop();
 
-		GLFWwindow* GetWindow() const { return _window; }
-
-	private:
-		static void FramebufferSizeCallback(GLFWwindow* window, int width, int height);
-
-
 	private:
 		Input* _input = nullptr;
-		GLFWwindow* _window = nullptr;
+		Window* _window = nullptr;
 	};
 }
 

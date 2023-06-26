@@ -160,6 +160,7 @@
     <ClCompile Include="VertexArrayObject.cpp" />
     <ClCompile Include="VertexAttribute.cpp" />
     <ClCompile Include="VertexShader.cpp" />
+    <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h" />
@@ -173,6 +174,7 @@
     <ClInclude Include="VertexArrayObject.h" />
     <ClInclude Include="VertexAttribute.h" />
     <ClInclude Include="VertexShader.h" />
+    <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.gitignore" />
