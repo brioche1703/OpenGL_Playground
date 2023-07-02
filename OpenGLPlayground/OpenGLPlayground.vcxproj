@@ -149,6 +149,7 @@
   <ItemGroup>
     <ClCompile Include="App.cpp" />
     <ClCompile Include="Buffer.cpp" />
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="FragmentShader.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="Input.cpp" />
@@ -165,6 +166,7 @@
   <ItemGroup>
     <ClInclude Include="App.h" />
     <ClInclude Include="Buffer.h" />
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="FragmentShader.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="libs\stb_image.h" />

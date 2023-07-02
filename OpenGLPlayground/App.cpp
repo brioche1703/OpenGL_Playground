@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <stdexcept>
-#include <stb_image.h>
+#include <stbi/stb_image.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -16,6 +16,7 @@
 #include "Texture.h"
 #include "Window.h"
 #include "Input.h"
+#include "Camera.h"
 
 namespace Playground
 {
@@ -24,14 +25,16 @@ namespace Playground
 
 	App::~App()
 	{
-		delete _input;
 		delete _window;
+		delete _input;
+		delete _camera;
 	}
 
 	void App::Init()
 	{
 		_window = new Window();
-		_input = new Input(_window->GetWindowPtr());
+		_camera = new Camera();
+		_input = new Input(_window->GetWindowPtr(), _camera);
 
 		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 		{
@@ -135,10 +138,10 @@ namespace Playground
 			glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-			glm::mat4 view(1.0f);
-			view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+			glm::mat4 view = _camera->LookAt();
+
 			glm::mat4 projection(1.0f);
-			projection = glm::perspective(_window->GetFov(), (float)_window->GetWidth() / (float)_window->GetHeight(), 0.1f, 100.0f);
+			projection = glm::perspective(glm::radians(_camera->GetFov()), (float)_window->GetWidth() / (float)_window->GetHeight(), 0.1f, 100.0f);
 
 
 			shaderProgram.Use();

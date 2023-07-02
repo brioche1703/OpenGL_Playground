@@ -14,7 +14,6 @@ namespace Playground
 		GLFWwindow* GetWindowPtr() { return _window; };
 		int GetWidth() { return _width; }
 		int GetHeight() { return _height; }
-		float GetFov() { return _fov; }
 
 		bool ShouldClose();
 
@@ -24,7 +23,6 @@ namespace Playground
 	private:
 		int _width = 800;
 		int _height = 600;
-		float _fov = 45.0f;
 
 		GLFWwindow* _window = nullptr;
 	};

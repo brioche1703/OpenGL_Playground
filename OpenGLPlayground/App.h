@@ -7,6 +7,7 @@ namespace Playground
 {
 	class Window;
 	class Input;
+	class Camera;
 
 	class App
 	{
@@ -17,8 +18,9 @@ namespace Playground
 		void GameLoop();
 
 	private:
-		Input* _input = nullptr;
 		Window* _window = nullptr;
+		Input* _input = nullptr;
+		Camera* _camera = nullptr;
 	};
 }
 
