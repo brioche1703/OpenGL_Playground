@@ -17,6 +17,7 @@
 #include "Window.h"
 #include "Input.h"
 #include "Camera.h"
+#include "Signal.h"
 
 namespace Playground
 {
@@ -34,7 +35,9 @@ namespace Playground
 	{
 		_window = new Window();
 		_camera = new Camera();
-		_input = new Input(_window->GetWindowPtr(), _camera);
+		_input = new Input(_window->GetWindowPtr());
+
+		_input->ConnectCamera(_camera);
 
 		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 		{

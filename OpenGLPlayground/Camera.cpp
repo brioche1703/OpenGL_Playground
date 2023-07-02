@@ -1,6 +1,7 @@
 #include "Camera.h"
 
 #include <glm/gtc/matrix_transform.hpp>
+#include <GLFW/glfw3.h>
 
 namespace Playground
 {
@@ -10,6 +11,7 @@ namespace Playground
 		_front(front),
 		_up(up)
 	{}
+
 	glm::mat4 Camera::LookAt() const
 	{
 			return glm::lookAt(
@@ -18,8 +20,13 @@ namespace Playground
 				_up
 			);
 	}
-	void Camera::Move(const Movement movement, const float deltaTime)
+
+	void Camera::Move(Movement movement)
 	{
+		double currentFrameTime = glfwGetTime();
+		_deltaTime = currentFrameTime - _lastFrameTime;
+		_lastFrameTime = currentFrameTime;
+
 		switch (movement)
 		{
 		case FORWARD:
@@ -42,10 +49,11 @@ namespace Playground
 			break;
 		}
 	}
-	void Camera::ProcessMouseOffset(const float xOffset, const float yOffset)
+
+	void Camera::ProcessMouseOffset(const double xOffset, const double yOffset)
 	{
-		_yaw += xOffset;
-		_pitch += yOffset;
+		_yaw += (float)xOffset;
+		_pitch += (float)yOffset;
 
 		if (_pitch > 89.0f)
 		{
@@ -64,9 +72,10 @@ namespace Playground
 
 		_front = glm::normalize(newDirection);
 	}
-	void Camera::Zoom(const float yOffset)
+
+	void Camera::Zoom(const double yOffset)
 	{
-		_fov -= yOffset;
+		_fov -= (float)yOffset;
 		if (_fov < 1.0f)
 		{
 			_fov = 1.0f;
@@ -76,6 +85,40 @@ namespace Playground
 			_fov = 45.0f;
 		}
 	}
+
+	void Camera::Reset()
+	{
+		*this = Camera();
+	}
+
+	void Camera::OnInputReceive(int key)
+	{
+		switch (key)
+		{
+		case GLFW_KEY_W:
+			Move(FORWARD);
+			break;
+		case GLFW_KEY_S:
+			Move(BACKWARD);
+			break;
+		case GLFW_KEY_A:
+			Move(LEFT);
+			break;
+		case GLFW_KEY_D:
+			Move(RIGHT);
+			break;
+		case GLFW_KEY_E:
+			Move(UP);
+			break;
+		case GLFW_KEY_Q:
+			Move(DOWN);
+			break;
+		case GLFW_KEY_R:
+			Reset();
+			break;
+		}
+	}
+
 	glm::vec3 Camera::GetRightVector() const
 	{
 		return glm::normalize(glm::cross(_front, _up));
