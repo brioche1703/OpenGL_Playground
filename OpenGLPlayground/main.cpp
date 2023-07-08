@@ -7,6 +7,7 @@
 #include "Input.h"
 #include "RenderingPipeline.h"
 #include "BasicMultipleCubesRP.h"
+#include "BasicLightRP.h"
 
 using namespace Playground;
 
@@ -15,7 +16,7 @@ int main()
 	App app;
 	app.Init();
 
-	BasicMultipleCubesRP* pipeline = new BasicMultipleCubesRP();
+	BasicLightRP* pipeline = new BasicLightRP();
 	app.AttachRenderingPipeline(pipeline);
 
 	app.GameLoop();
