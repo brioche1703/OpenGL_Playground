@@ -5,6 +5,8 @@
 #include "ShaderProgram.h"
 #include "VertexArrayObject.h"
 #include "Buffer.h"
+#include "PointLight.h"
+#include "Material.h"
 
 namespace Playground
 {
@@ -20,6 +22,9 @@ namespace Playground
 		ShaderProgram _lightCubeShaderProgram;
 		VertexArrayObject _VAO, _VAOLight;
 		Buffer _VBO;
+
+		PointLight light;
+		Material material;
 	};
 
 }

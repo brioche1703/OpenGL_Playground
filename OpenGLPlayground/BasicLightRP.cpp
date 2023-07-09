@@ -12,16 +12,14 @@
 
 #include "VertexShader.h"
 #include "FragmentShader.h"
-#include "ShaderProgram.h"
-#include "Buffer.h"
 #include "VertexAttribute.h"
-#include "VertexArrayObject.h"
 #include "Texture.h"
 #include "Window.h"
 #include "Input.h"
 #include "Camera.h"
 #include "Signal.h"
 #include "CubeMesh.h"
+#include "Material.h"
 
 namespace Playground
 {
@@ -74,9 +72,7 @@ namespace Playground
 		glClearColor(0.2f, 0.2f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		glm::vec3 objectColor(0.8f, 0.5f, 0.3f);
-		glm::vec3 lightColor(1.0f, 1.0f, 1.0f);
-		glm::vec3 lightPosition(cos(glfwGetTime()),  0.0f, sin(glfwGetTime()));
+		light._position = glm::vec3(cos(glfwGetTime()) * 3, 0.5f, sin(glfwGetTime()) * 3);
 
 		// Cube
 		glm::mat4 model(1.0f);
@@ -88,22 +84,32 @@ namespace Playground
 		_shaderProgram.SetUniformLocation(glUniformMatrix4fv, "view", 1, GL_FALSE, glm::value_ptr(view));
 		_shaderProgram.SetUniformLocation(glUniformMatrix4fv, "projection", 1, GL_FALSE, glm::value_ptr(projection));
 		_shaderProgram.SetUniformLocation(glUniformMatrix4fv, "model", 1, GL_FALSE, glm::value_ptr(model));
+
 		_shaderProgram.SetUniformLocation(glUniform3fv, "viewPosition", 1, glm::value_ptr(camera->GetPosition()));
-		_shaderProgram.SetUniformLocation(glUniform3fv, "objectColor", 1, glm::value_ptr(objectColor));
-		_shaderProgram.SetUniformLocation(glUniform3fv, "lightColor", 1, glm::value_ptr(lightColor));
-		_shaderProgram.SetUniformLocation(glUniform3fv, "lightPosition", 1, glm::value_ptr(lightPosition));
+
+		_shaderProgram.SetUniformLocation(glUniform3fv, "material.ambient", 1, glm::value_ptr(material._ambient));
+		_shaderProgram.SetUniformLocation(glUniform3fv, "material.diffuse", 1, glm::value_ptr(material._diffuse));
+		_shaderProgram.SetUniformLocation(glUniform3fv, "material.specular", 1, glm::value_ptr(material._specular));
+		_shaderProgram.SetUniformLocation(glUniform1f, "material.shininess", material._shininess);
+
+		_shaderProgram.SetUniformLocation(glUniform3fv, "light.position", 1, glm::value_ptr(light._position));
+		_shaderProgram.SetUniformLocation(glUniform3fv, "light.ambient", 1, glm::value_ptr(light._ambient));
+		_shaderProgram.SetUniformLocation(glUniform3fv, "light.diffuse", 1, glm::value_ptr(light._diffuse));
+		_shaderProgram.SetUniformLocation(glUniform3fv, "light.specular", 1, glm::value_ptr(light._specular));
 
 		_VAO.Bind();
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 
 		// Light object
-		model = glm::translate(model, lightPosition);
+		model = glm::translate(model, light._position);
 		model = glm::scale(model, glm::vec3(0.2f));
 
 		_lightCubeShaderProgram.Use();
 		_lightCubeShaderProgram.SetUniformLocation(glUniformMatrix4fv, "view", 1, GL_FALSE, glm::value_ptr(view));
 		_lightCubeShaderProgram.SetUniformLocation(glUniformMatrix4fv, "projection", 1, GL_FALSE, glm::value_ptr(projection));
 		_lightCubeShaderProgram.SetUniformLocation(glUniformMatrix4fv, "model", 1, GL_FALSE, glm::value_ptr(model));
+		_lightCubeShaderProgram.SetUniformLocation(glUniform3fv, "light.ambient", 1, glm::value_ptr(light._ambient));
+		_lightCubeShaderProgram.SetUniformLocation(glUniform3fv, "light.diffuse", 1, glm::value_ptr(light._diffuse));
 
 		_VAOLight.Bind();
 		glDrawArrays(GL_TRIANGLES, 0, 36);
