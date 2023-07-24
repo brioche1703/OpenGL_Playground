@@ -21,8 +21,8 @@ namespace Playground
 		static void FramebufferSizeCallback(GLFWwindow* window, int width, int height);
 
 	private:
-		int _width = 800;
-		int _height = 600;
+		int _width = 1600;
+		int _height = 1200;
 
 		GLFWwindow* _window = nullptr;
 	};

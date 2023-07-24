@@ -9,6 +9,7 @@ namespace Playground
 	class Input;
 	class Camera;
 	class RenderingPipeline;
+	class ImGuiController;
 
 	class App
 	{
@@ -23,6 +24,7 @@ namespace Playground
 
 	private:
 		Window* _window = nullptr;
+		ImGuiController* _imguiController = nullptr;
 		Input* _input = nullptr;
 		Camera* _camera = nullptr;
 		RenderingPipeline* _pipeline = nullptr;

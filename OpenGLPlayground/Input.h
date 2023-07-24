@@ -2,6 +2,8 @@
 
 #include "Signal.h"
 
+#include <set>
+
 struct GLFWwindow;
 
 namespace Playground
@@ -36,6 +38,7 @@ namespace Playground
 		float _lastMouseY = 0.0f;
 		float _sensitivity = 0.1f;
 		bool _firstMouse = true;
+		bool _fpsMode;
 	};
 
 }

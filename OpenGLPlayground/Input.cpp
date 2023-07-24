@@ -4,6 +4,7 @@
 
 #include "Camera.h"
 
+
 namespace Playground
 {
 	static Input* _instance = nullptr;
@@ -17,6 +18,7 @@ namespace Playground
 			_instance = this;
 		}
 
+		_fpsMode = true;
 		glfwSetInputMode(_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 		glfwSetCursorPosCallback(_window, MouseCallback);
 		glfwSetScrollCallback(_window, ScrollCallback);
@@ -32,6 +34,23 @@ namespace Playground
 		if (glfwGetKey(_window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 		{
 			glfwSetWindowShouldClose(_window, true);
+		}
+
+		if (glfwGetKey(_window, GLFW_KEY_F1) == GLFW_PRESS)
+		{
+			if (!_fpsMode)
+			{
+				_fpsMode = true;
+				glfwSetInputMode(_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+			}
+		}
+		if (glfwGetKey(_window, GLFW_KEY_F2) == GLFW_PRESS)
+		{
+			if (_fpsMode)
+			{
+				_fpsMode = false;
+				glfwSetInputMode(_window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+			}
 		}
 
 		if (glfwGetKey(_window, GLFW_KEY_W) == GLFW_PRESS)
@@ -88,11 +107,17 @@ namespace Playground
 		xOffset *= _instance->_sensitivity;
 		yOffset *= _instance->_sensitivity;
 
-		_instance->OnMouseMove.Emit(xOffset, yOffset);
+		if (_instance->_fpsMode)
+		{
+			_instance->OnMouseMove.Emit(xOffset, yOffset);
+		}
 	}
 
 	void Input::ScrollCallback(GLFWwindow* window, double xpos, double ypos)
 	{
-		_instance->OnMouseScroll.Emit(ypos);
+		if (_instance->_fpsMode)
+		{
+			_instance->OnMouseScroll.Emit(ypos);
+		}
 	}
 }

@@ -12,6 +12,7 @@
 #include "Camera.h"
 #include "Signal.h"
 #include "RenderingPipeline.h"
+#include "ImGuiController.h"
 
 namespace Playground
 {
@@ -20,6 +21,7 @@ namespace Playground
 
 	App::~App()
 	{
+		_imguiController->Shutdown();
 		delete _window;
 		delete _input;
 		delete _camera;
@@ -28,6 +30,7 @@ namespace Playground
 	void App::Init()
 	{
 		_window = new Window();
+		_imguiController = new ImGuiController(_window->GetWindowPtr());
 		_camera = new Camera();
 		_input = new Input(_window->GetWindowPtr());
 
@@ -38,6 +41,8 @@ namespace Playground
 			throw "Failed to initialize GLAD";
 		}
 
+		_imguiController->Init();
+
 		glViewport(0, 0, _window->GetWidth(), _window->GetHeight());
 	}
 
@@ -46,11 +51,14 @@ namespace Playground
 		while (!_window->ShouldClose())
 		{
 			_input->ProcessInput();
+			_imguiController->SetRender();
 
 			if (_pipeline)
 			{
 				_pipeline->Draw(_window, _camera);
 			}
+
+			_imguiController->Render();
 
 			glfwSwapBuffers(_window->GetWindowPtr());
 			glfwPollEvents();
