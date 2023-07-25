@@ -18,8 +18,8 @@ namespace Playground
 			_instance = this;
 		}
 
-		_fpsMode = true;
-		glfwSetInputMode(_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+		glfwSetInputMode(_window, GLFW_CURSOR, _fpsMode ? GLFW_CURSOR_DISABLED : GLFW_CURSOR_NORMAL);
+		glfwSetKeyCallback(_window, KeyCallback);
 		glfwSetCursorPosCallback(_window, MouseCallback);
 		glfwSetScrollCallback(_window, ScrollCallback);
 	}
@@ -31,53 +31,31 @@ namespace Playground
 
 	void Input::ProcessInput()
 	{
-		if (glfwGetKey(_window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-		{
-			glfwSetWindowShouldClose(_window, true);
-		}
-
-		if (glfwGetKey(_window, GLFW_KEY_F1) == GLFW_PRESS)
-		{
-			if (!_fpsMode)
-			{
-				_fpsMode = true;
-				glfwSetInputMode(_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-			}
-		}
-		if (glfwGetKey(_window, GLFW_KEY_F2) == GLFW_PRESS)
-		{
-			if (_fpsMode)
-			{
-				_fpsMode = false;
-				glfwSetInputMode(_window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
-			}
-		}
-
-		if (glfwGetKey(_window, GLFW_KEY_W) == GLFW_PRESS)
+		if (glfwGetKey(_window, GLFW_KEY_W) == GLFW_PRESS && _fpsMode)
 		{
 			_instance->OnInputPressed.Emit(GLFW_KEY_W);
 		}
-		if (glfwGetKey(_window, GLFW_KEY_S) == GLFW_PRESS)
+		if (glfwGetKey(_window, GLFW_KEY_S) == GLFW_PRESS && _fpsMode)
 		{
 			_instance->OnInputPressed.Emit(GLFW_KEY_S);
 		}
-		if (glfwGetKey(_window, GLFW_KEY_A) == GLFW_PRESS)
+		if (glfwGetKey(_window, GLFW_KEY_A) == GLFW_PRESS && _fpsMode)
 		{
 			_instance->OnInputPressed.Emit(GLFW_KEY_A);
 		}
-		if (glfwGetKey(_window, GLFW_KEY_D) == GLFW_PRESS)
+		if (glfwGetKey(_window, GLFW_KEY_D) == GLFW_PRESS && _fpsMode)
 		{
 			_instance->OnInputPressed.Emit(GLFW_KEY_D);
 		}
-		if (glfwGetKey(_window, GLFW_KEY_Q) == GLFW_PRESS)
+		if (glfwGetKey(_window, GLFW_KEY_Q) == GLFW_PRESS && _fpsMode)
 		{
 			_instance->OnInputPressed.Emit(GLFW_KEY_Q);
 		}
-		if (glfwGetKey(_window, GLFW_KEY_E) == GLFW_PRESS)
+		if (glfwGetKey(_window, GLFW_KEY_E) == GLFW_PRESS && _fpsMode)
 		{
 			_instance->OnInputPressed.Emit(GLFW_KEY_E);
 		}
-		if (glfwGetKey(_window, GLFW_KEY_R) == GLFW_PRESS)
+		if (glfwGetKey(_window, GLFW_KEY_R) == GLFW_PRESS && _fpsMode)
 		{
 			_instance->OnInputPressed.Emit(GLFW_KEY_R);
 		}
@@ -88,6 +66,20 @@ namespace Playground
 		OnInputPressed.ConnectMember(camera, &Camera::OnInputReceive);
 		OnMouseMove.ConnectMember(camera, &Camera::ProcessMouseOffset);
 		OnMouseScroll.ConnectMember(camera, &Camera::Zoom);
+	}
+
+	// This callback processes only one input event
+	void Input::KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
+	{
+		if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+		{
+			glfwSetWindowShouldClose(window, true);
+		}
+		else if (key == GLFW_KEY_F1 && action == GLFW_PRESS)
+		{
+			_instance->_fpsMode = !_instance->_fpsMode;
+			glfwSetInputMode(window, GLFW_CURSOR, _instance->_fpsMode ? GLFW_CURSOR_DISABLED : GLFW_CURSOR_NORMAL);
+		}
 	}
 
 	void Input::MouseCallback(GLFWwindow* window, double xpos, double ypos)

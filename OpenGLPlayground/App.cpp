@@ -13,6 +13,8 @@
 #include "Signal.h"
 #include "RenderingPipeline.h"
 #include "ImGuiController.h"
+#include "BasicMultipleCubesRP.h"
+#include "BasicLightRP.h"
 
 namespace Playground
 {
@@ -43,6 +45,8 @@ namespace Playground
 
 		_imguiController->Init();
 
+		SetPipeline(_activePipelineId);
+
 		glViewport(0, 0, _window->GetWidth(), _window->GetHeight());
 	}
 
@@ -51,12 +55,11 @@ namespace Playground
 		while (!_window->ShouldClose())
 		{
 			_input->ProcessInput();
-			_imguiController->SetRender();
 
-			if (_pipeline)
-			{
-				_pipeline->Draw(_window, _camera);
-			}
+			_imguiController->SetRender();
+			ImGuiMenu();
+
+			_activePipeline->Draw(_window, _camera);
 
 			_imguiController->Render();
 
@@ -64,25 +67,60 @@ namespace Playground
 			glfwPollEvents();
 		}
 		
-		DetachRenderingPipeline();
+		ClearActivePipeline();
 	}
 
-	void App::AttachRenderingPipeline(RenderingPipeline* renderingPipeline)
+	void App::SetPipeline(const PipelineId newPipelineType)
 	{
-		_pipeline = renderingPipeline;
+		DeleteActivePipeline();
 
-		if (_pipeline)
+		switch (newPipelineType)
 		{
-			_pipeline->Init();
+		case BASIC_LIGHT:
+			_activePipeline = new BasicLightRP();
+			break;
+		case BASIC_MULTIPLE_CUBES:
+			_activePipeline = new BasicMultipleCubesRP();
+			break;
+		}
+
+		_activePipeline->Init();
+		_activePipelineId = newPipelineType;
+	}
+
+	void App::ClearActivePipeline()
+	{
+		if (_activePipeline != nullptr)
+		{
+			_activePipeline->Clear();
 		}
 	}
 
-	void App::DetachRenderingPipeline()
+	void App::DeleteActivePipeline()
 	{
-		if (_pipeline)
+		if (_activePipeline != nullptr)
 		{
-			_pipeline->Clear();
-			_pipeline = nullptr;
+			_activePipeline->Clear();
+			delete _activePipeline;
 		}
+	}
+
+	void App::ImGuiMenu()
+	{
+		ImGui::Begin("Settings");
+
+		ImGui::Text("F1 : Toggle On/Off FPS camera");
+		ImGui::Spacing();
+
+		const char* pipelines[] = { "Basic Lighting", "Basic Multiple Cubes"};
+		static int item_current = 0;
+		ImGui::Combo("Rendering Pipeline", &item_current, pipelines, IM_ARRAYSIZE(pipelines));
+
+		if (item_current != _activePipelineId)
+		{
+			SetPipeline((PipelineId)item_current);
+		}
+
+		ImGui::End();
 	}
 }

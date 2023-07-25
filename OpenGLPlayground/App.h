@@ -3,6 +3,8 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
+#include <vector>
+
 namespace Playground
 {
 	class Window;
@@ -13,21 +15,34 @@ namespace Playground
 
 	class App
 	{
+	private:
+		enum PipelineId
+		{
+			BASIC_LIGHT = 0,
+			BASIC_MULTIPLE_CUBES = 1,
+		};
+
 	public:
 		App();
 		~App();
 
 		void Init();
 		void GameLoop();
-		void AttachRenderingPipeline(RenderingPipeline* renderingPipeline);
-		void DetachRenderingPipeline();
+	private:
+		void SetPipeline(const PipelineId newPipeline);
+		void ClearActivePipeline();
+		void DeleteActivePipeline();
+
+		void ImGuiMenu();
 
 	private:
 		Window* _window = nullptr;
 		ImGuiController* _imguiController = nullptr;
 		Input* _input = nullptr;
 		Camera* _camera = nullptr;
-		RenderingPipeline* _pipeline = nullptr;
+
+		PipelineId _activePipelineId = BASIC_LIGHT;
+		RenderingPipeline* _activePipeline = nullptr;
 	};
 }
 

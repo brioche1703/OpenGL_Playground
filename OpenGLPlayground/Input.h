@@ -23,6 +23,7 @@ namespace Playground
 		void ConnectCamera(Camera* const camera);
 
 	private:
+		static void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
 		static void MouseCallback(GLFWwindow* window, double xpos, double ypos);
 		static void ScrollCallback(GLFWwindow* window, double xOffset, double yOffset);
 
@@ -38,7 +39,7 @@ namespace Playground
 		float _lastMouseY = 0.0f;
 		float _sensitivity = 0.1f;
 		bool _firstMouse = true;
-		bool _fpsMode;
+		bool _fpsMode = false;
 	};
 
 }
