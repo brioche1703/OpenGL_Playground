@@ -15,6 +15,7 @@
 #include "ImGuiController.h"
 #include "BasicMultipleCubesRP.h"
 #include "BasicLightRP.h"
+#include "LightingMapsRP.h"
 
 namespace Playground
 {
@@ -82,6 +83,9 @@ namespace Playground
 		case BASIC_MULTIPLE_CUBES:
 			_activePipeline = new BasicMultipleCubesRP();
 			break;
+		case LIGHTING_MAPS:
+			_activePipeline = new LightingMaps();
+			break;
 		}
 
 		_activePipeline->Init();
@@ -112,8 +116,8 @@ namespace Playground
 		ImGui::Text("F1 : Toggle On/Off FPS camera");
 		ImGui::Spacing();
 
-		const char* pipelines[] = { "Basic Lighting", "Basic Multiple Cubes"};
-		static int item_current = 0;
+		const char* pipelines[] = { "Basic Lighting", "Basic Multiple Cubes", "Lighting Maps"};
+		static int item_current = _activePipelineId;
 		ImGui::Combo("Rendering Pipeline", &item_current, pipelines, IM_ARRAYSIZE(pipelines));
 
 		if (item_current != _activePipelineId)

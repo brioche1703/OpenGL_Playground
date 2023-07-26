@@ -6,9 +6,9 @@ namespace Playground
 {
 	struct Material
 	{
-		glm::vec3 _ambient = glm::vec3(0.24725f, 0.1995f, 0.0745f);
-		glm::vec3 _diffuse = glm::vec3(0.75164f, 0.60648f, 0.22648f);
-		glm::vec3 _specular = glm::vec3(0.628281f, 0.555802f, 0.366065f);
-		float _shininess = 0.4f;
+		glm::vec3 _ambient = glm::vec3(0.2f, 0.2f, 0.2f);
+		glm::vec3 _diffuse = glm::vec3(0.5f, 0.5f, 0.5f);
+		glm::vec3 _specular = glm::vec3(1.0f, 1.0f, 1.0f);
+		float _shininess = 64.0f;
 	};
 }

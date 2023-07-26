@@ -132,6 +132,9 @@
     <ClCompile Include="ImGuiController.cpp">
       <Filter>Source Files\Misc</Filter>
     </ClCompile>
+    <ClCompile Include="LightingMapsRP.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="libs\stb_image.h">
@@ -227,6 +230,9 @@
     <ClInclude Include="ImGuiController.h">
       <Filter>Header Files\Misc</Filter>
     </ClInclude>
+    <ClInclude Include="LightingMapsRP.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.gitignore">
@@ -247,6 +253,9 @@
     <None Include="shaders\LightCubeShader_fs.glsl">
       <Filter>Resource Files\shaders</Filter>
     </None>
+    <None Include="shaders\phong_lightingMaps_fs.glsl">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="images\container.jpg">
@@ -256,6 +265,9 @@
       <Filter>Resource Files\images</Filter>
     </Image>
     <Image Include="images\smiley.png">
+      <Filter>Resource Files\images</Filter>
+    </Image>
+    <Image Include="images\container2.png">
       <Filter>Resource Files\images</Filter>
     </Image>
   </ItemGroup>

@@ -20,6 +20,7 @@ namespace Playground
 		{
 			BASIC_LIGHT = 0,
 			BASIC_MULTIPLE_CUBES = 1,
+			LIGHTING_MAPS = 2,
 		};
 
 	public:
@@ -41,7 +42,7 @@ namespace Playground
 		Input* _input = nullptr;
 		Camera* _camera = nullptr;
 
-		PipelineId _activePipelineId = BASIC_LIGHT;
+		PipelineId _activePipelineId = LIGHTING_MAPS;
 		RenderingPipeline* _activePipeline = nullptr;
 	};
 }
