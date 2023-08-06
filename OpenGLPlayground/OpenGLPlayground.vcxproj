@@ -168,6 +168,7 @@
     <ClCompile Include="glad.c" />
     <ClCompile Include="ImGuiController.cpp" />
     <ClCompile Include="Input.cpp" />
+    <ClCompile Include="LightCastersRP.cpp" />
     <ClCompile Include="LightingMapsRP.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Shader.cpp" />
@@ -186,6 +187,7 @@
     <ClInclude Include="Buffer.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CubeMesh.h" />
+    <ClInclude Include="DirectionalLight.h" />
     <ClInclude Include="external\Include\imgui\imconfig.h" />
     <ClInclude Include="external\Include\imgui\imgui.h" />
     <ClInclude Include="external\Include\imgui\imgui_impl_glfw.h" />
@@ -199,6 +201,7 @@
     <ClInclude Include="ImGuiController.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="libs\stb_image.h" />
+    <ClInclude Include="LightCastersRP.h" />
     <ClInclude Include="LightingMapsRP.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="Mesh.h" />
@@ -219,6 +222,7 @@
     <None Include="shaders\LightCubeShader_fs.glsl" />
     <None Include="shaders\MultipleCubesShader_fs.glsl" />
     <None Include="shaders\MultipleCubesShader_vs.glsl" />
+    <None Include="shaders\phong_lightCasters_fs.glsl" />
     <None Include="shaders\phong_lightingMaps_fs.glsl" />
     <None Include="shaders\shader_vs.glsl" />
   </ItemGroup>

@@ -133,7 +133,10 @@
       <Filter>Source Files\Misc</Filter>
     </ClCompile>
     <ClCompile Include="LightingMapsRP.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Pipelines</Filter>
+    </ClCompile>
+    <ClCompile Include="LightCastersRP.cpp">
+      <Filter>Source Files\Pipelines</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -231,7 +234,13 @@
       <Filter>Header Files\Misc</Filter>
     </ClInclude>
     <ClInclude Include="LightingMapsRP.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Pipelines</Filter>
+    </ClInclude>
+    <ClInclude Include="LightCastersRP.h">
+      <Filter>Header Files\Pipelines</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectionalLight.h">
+      <Filter>Header Files\CoreEngine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -254,6 +263,9 @@
       <Filter>Resource Files\shaders</Filter>
     </None>
     <None Include="shaders\phong_lightingMaps_fs.glsl">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+    <None Include="shaders\phong_lightCasters_fs.glsl">
       <Filter>Resource Files\shaders</Filter>
     </None>
   </ItemGroup>

@@ -7,9 +7,9 @@ struct Light {
     vec3 diffuse;
 };
 
-uniform Light light;
+uniform Light pointLight;
 
 void main()
 {
-    FragColor = vec4(light.ambient + light.diffuse, 1.0f);
+    FragColor = vec4(pointLight.ambient + pointLight.diffuse, 1.0f);
 }

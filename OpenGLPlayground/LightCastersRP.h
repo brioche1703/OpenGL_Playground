@@ -6,12 +6,13 @@
 #include "VertexArrayObject.h"
 #include "Buffer.h"
 #include "PointLight.h"
+#include "DirectionalLight.h"
 #include "Material.h"
 #include "Texture.h"
 
 namespace Playground
 {
-	class LightingMaps : public RenderingPipeline
+	class LightCastersRP : public RenderingPipeline
 	{
 	public:
 		virtual void Init() override;
@@ -24,8 +25,9 @@ namespace Playground
 		VertexArrayObject _VAO, _VAOLight;
 		Buffer _VBO;
 
-		PointLight light;
-		Material material;
+		DirectionalLight _directionalLight;
+		PointLight _pointLight;
+		Material _material;
 
 		Texture _textureContainer = Texture("images/container2.png", GL_TEXTURE_2D, true);
 		Texture _textureContainerSpecular = Texture("images/container2_specular.png", GL_TEXTURE_2D, true);

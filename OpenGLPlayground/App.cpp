@@ -16,6 +16,7 @@
 #include "BasicMultipleCubesRP.h"
 #include "BasicLightRP.h"
 #include "LightingMapsRP.h"
+#include "LightCastersRP.h"
 
 namespace Playground
 {
@@ -85,6 +86,8 @@ namespace Playground
 			break;
 		case LIGHTING_MAPS:
 			_activePipeline = new LightingMaps();
+		case LIGHT_CASTERS:
+			_activePipeline = new LightCastersRP();
 			break;
 		}
 
@@ -116,7 +119,7 @@ namespace Playground
 		ImGui::Text("F1 : Toggle On/Off FPS camera");
 		ImGui::Spacing();
 
-		const char* pipelines[] = { "Basic Lighting", "Basic Multiple Cubes", "Lighting Maps"};
+		const char* pipelines[] = { "Basic Lighting", "Basic Multiple Cubes", "Lighting Maps", "Light Casters"};
 		static int item_current = _activePipelineId;
 		ImGui::Combo("Rendering Pipeline", &item_current, pipelines, IM_ARRAYSIZE(pipelines));
 
