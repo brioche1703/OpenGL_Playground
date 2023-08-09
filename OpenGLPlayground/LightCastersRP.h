@@ -6,12 +6,16 @@
 #include "VertexArrayObject.h"
 #include "Buffer.h"
 #include "PointLight.h"
+#include "SpotLight.h"
 #include "DirectionalLight.h"
 #include "Material.h"
 #include "Texture.h"
 
 namespace Playground
 {
+
+#define MAX_LIGHTS_NUMBER 10
+
 	class LightCastersRP : public RenderingPipeline
 	{
 	public:
@@ -26,7 +30,9 @@ namespace Playground
 		Buffer _VBO;
 
 		DirectionalLight _directionalLight;
-		PointLight _pointLight;
+		std::vector<PointLight> _pointLights;
+		SpotLight _spotLight;
+
 		Material _material;
 
 		Texture _textureContainer = Texture("images/container2.png", GL_TEXTURE_2D, true);

@@ -24,6 +24,7 @@ namespace Playground
 		Camera(glm::vec3 pos = glm::vec3(0.0f, 0.5f, 5.0f), glm::vec3 front = glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f));
 
 		glm::vec3 GetPosition() const { return _pos; }
+		glm::vec3 GetFront() const { return _front; }
 		float GetFov() const { return _fov; }
 
 		glm::mat4 LookAt() const;

@@ -86,7 +86,11 @@ namespace Playground
 			break;
 		case LIGHTING_MAPS:
 			_activePipeline = new LightingMaps();
+			break;
 		case LIGHT_CASTERS:
+			_activePipeline = new LightCastersRP();
+			break;
+		default:
 			_activePipeline = new LightCastersRP();
 			break;
 		}
