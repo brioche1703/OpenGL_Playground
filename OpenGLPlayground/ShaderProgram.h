@@ -15,6 +15,9 @@ namespace Playground
 	{
 	public:
 		ShaderProgram();
+
+		unsigned int GetId() const { return _id; }
+
 		void AttachShader(Shader shader);
 		void AttachShader(std::vector<Shader> shaders);
 		int GetUniformLocation(const std::string& name) const;

@@ -17,6 +17,7 @@
 #include "BasicLightRP.h"
 #include "LightingMapsRP.h"
 #include "LightCastersRP.h"
+#include "ModelLoadingRP.h"
 
 namespace Playground
 {
@@ -90,6 +91,9 @@ namespace Playground
 		case LIGHT_CASTERS:
 			_activePipeline = new LightCastersRP();
 			break;
+		case MODEL_LOADING:
+			_activePipeline = new ModelLoadingRP();
+			break;
 		default:
 			_activePipeline = new LightCastersRP();
 			break;
@@ -123,7 +127,7 @@ namespace Playground
 		ImGui::Text("F1 : Toggle On/Off FPS camera");
 		ImGui::Spacing();
 
-		const char* pipelines[] = { "Basic Lighting", "Basic Multiple Cubes", "Lighting Maps", "Light Casters"};
+		const char* pipelines[] = { "Basic Lighting", "Basic Multiple Cubes", "Lighting Maps", "Light Casters", "Model Loading"};
 		static int item_current = _activePipelineId;
 		ImGui::Combo("Rendering Pipeline", &item_current, pipelines, IM_ARRAYSIZE(pipelines));
 

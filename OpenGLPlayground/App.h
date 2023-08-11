@@ -16,12 +16,13 @@ namespace Playground
 	class App
 	{
 	private:
-		enum PipelineId
+		enum PipelineId	 
 		{
 			BASIC_LIGHT = 0,
 			BASIC_MULTIPLE_CUBES = 1,
 			LIGHTING_MAPS = 2,
 			LIGHT_CASTERS = 3,
+			MODEL_LOADING = 4,
 		};
 
 	public:
@@ -43,7 +44,7 @@ namespace Playground
 		Input* _input = nullptr;
 		Camera* _camera = nullptr;
 
-		PipelineId _activePipelineId = LIGHT_CASTERS;
+		PipelineId _activePipelineId = MODEL_LOADING;
 		RenderingPipeline* _activePipeline = nullptr;
 	};
 }
