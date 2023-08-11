@@ -17,6 +17,7 @@ namespace Playground
 	public:
 		Model(const std::string& path, bool gamma = false);
 		~Model();
+
 		void Draw(ShaderProgram& shaderProgram);
 
 	private:

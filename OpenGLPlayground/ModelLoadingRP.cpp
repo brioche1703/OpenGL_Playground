@@ -25,7 +25,7 @@ namespace Playground
 		glEnable(GL_DEPTH_TEST);
 
 		VertexShader vertexShader("shaders/modelLoading_vs.glsl");
-		FragmentShader fragmentShader("shaders/modelLoading_fs.glsl");
+		FragmentShader fragmentShader("shaders/modelLoadingUnlit_fs.glsl");
 
 		_shaderProgram.AttachShader({ vertexShader, fragmentShader });
 		_shaderProgram.LinkProgram();

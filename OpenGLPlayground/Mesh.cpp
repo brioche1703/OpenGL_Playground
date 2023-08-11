@@ -7,11 +7,12 @@
 
 namespace Playground
 {
-	Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Texture> textures)
+	Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Texture> textures, float shininess)
 		:
 		_vertices(vertices),
 		_indices(indices),
-		_textures(textures)
+		_textures(textures),
+		_shininess(shininess)
 	{
 		SetupMesh();
 	}
@@ -22,6 +23,9 @@ namespace Playground
 		unsigned int specularNr = 1;
 		unsigned int normalNr = 1;
 		unsigned int heightNr = 1;
+
+		shaderProgram.SetUniformLocation(glUniform1f, "shininess", _shininess);
+
 		for (unsigned int i = 0; i < _textures.size(); i++)
 		{
 			glActiveTexture(GL_TEXTURE0 + i);

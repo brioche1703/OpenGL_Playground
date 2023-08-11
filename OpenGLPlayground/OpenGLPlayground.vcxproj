@@ -177,6 +177,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="Model.cpp" />
+    <ClCompile Include="ModelLoadingLitRP.cpp" />
     <ClCompile Include="ModelLoadingRP.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
@@ -211,6 +212,7 @@
     <ClInclude Include="LightCastersRP.h" />
     <ClInclude Include="LightingMapsRP.h" />
     <ClInclude Include="Material.h" />
+    <ClInclude Include="ModelLoadingLitRP.h" />
     <ClInclude Include="SimpleMesh.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Model.h" />
@@ -229,7 +231,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.gitignore" />
-    <None Include="shaders\modelLoading_fs.glsl" />
+    <None Include="shaders\modelLoadingLit_fs.glsl" />
+    <None Include="shaders\modelLoadingUnlit_fs.glsl" />
     <None Include="shaders\modelLoading_vs.glsl" />
     <None Include="shaders\phong_fs.glsl" />
     <None Include="shaders\LightCubeShader_fs.glsl" />

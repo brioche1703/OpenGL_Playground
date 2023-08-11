@@ -23,6 +23,7 @@ namespace Playground
 			LIGHTING_MAPS = 2,
 			LIGHT_CASTERS = 3,
 			MODEL_LOADING = 4,
+			MODEL_LOADING_LIT = 5,
 		};
 
 	public:
@@ -44,7 +45,7 @@ namespace Playground
 		Input* _input = nullptr;
 		Camera* _camera = nullptr;
 
-		PipelineId _activePipelineId = MODEL_LOADING;
+		PipelineId _activePipelineId = MODEL_LOADING_LIT;
 		RenderingPipeline* _activePipeline = nullptr;
 	};
 }

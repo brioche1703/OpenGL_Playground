@@ -33,7 +33,7 @@ namespace Playground
 	class Mesh
 	{
 	public:
-		Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Texture> textures);
+		Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Texture> textures, float shininess = 64.0f);
 
 		void Draw(ShaderProgram& shaderProgram);
 
@@ -44,6 +44,7 @@ namespace Playground
 		std::vector<Vertex> _vertices;
 		std::vector<unsigned int> _indices;
 		std::vector<Texture> _textures;
+		float _shininess = 64.0f;
 
 		VertexArrayObject _VAO;
 		Buffer _VBO, _EBO;
