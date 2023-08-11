@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Mesh.h"
+#include "SimpleMesh.h"
 
 namespace Playground
 {
-	class CubeMesh : public Mesh
+	class CubeMesh : public SimpleMesh
 	{
 	public:
 		CubeMesh();

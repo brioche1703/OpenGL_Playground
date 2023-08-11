@@ -144,7 +144,7 @@
     <ClCompile Include="Model.cpp">
       <Filter>Source Files\CoreEngine</Filter>
     </ClCompile>
-    <ClCompile Include="Mesh2.cpp">
+    <ClCompile Include="Mesh.cpp">
       <Filter>Source Files\CoreEngine</Filter>
     </ClCompile>
   </ItemGroup>
@@ -161,7 +161,7 @@
     <ClInclude Include="FragmentShader.h">
       <Filter>Header Files\CoreEngine</Filter>
     </ClInclude>
-    <ClInclude Include="Mesh.h">
+    <ClInclude Include="SimpleMesh.h">
       <Filter>Header Files\CoreEngine</Filter>
     </ClInclude>
     <ClInclude Include="RenderingPipeline.h">
@@ -254,7 +254,7 @@
     <ClInclude Include="SpotLight.h">
       <Filter>Header Files\CoreEngine</Filter>
     </ClInclude>
-    <ClInclude Include="Mesh2.h">
+    <ClInclude Include="Mesh.h">
       <Filter>Header Files\CoreEngine</Filter>
     </ClInclude>
     <ClInclude Include="Model.h">
@@ -289,10 +289,10 @@
     <None Include="shaders\phong_lightCasters_fs.glsl">
       <Filter>Resource Files\shaders</Filter>
     </None>
-    <None Include="modelLoading_vs.glsl">
+    <None Include="shaders\modelLoading_fs.glsl">
       <Filter>Resource Files\shaders</Filter>
     </None>
-    <None Include="modelLoading_fs.glsl">
+    <None Include="shaders\modelLoading_vs.glsl">
       <Filter>Resource Files\shaders</Filter>
     </None>
   </ItemGroup>

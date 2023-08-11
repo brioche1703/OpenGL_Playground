@@ -5,31 +5,52 @@
 
 namespace Playground
 {
-	Texture::Texture(const std::string& sourcePath, GLenum target, bool flipY, int wrapping)
+	Texture::Texture(const std::string& sourcePath, GLenum target, bool flipY, int wrapping, const std::string& type)
 		:
+		_path(sourcePath),
+		_type(type),
 		_target(target)
 	{
 		glGenTextures(1, &_id);
-		glBindTexture(_target, _id);
-		glTexParameteri(_target, GL_TEXTURE_WRAP_S, wrapping);
-		glTexParameteri(_target, GL_TEXTURE_WRAP_T, wrapping);
-		glTexParameteri(_target, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-		glTexParameteri(_target, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		int width, height, nrComponents;
 
-		stbi_set_flip_vertically_on_load(flipY);  
-		unsigned char* data = stbi_load(sourcePath.c_str(), &_width, &_height, &_nrChannels, 0);
+		stbi_set_flip_vertically_on_load(flipY);
+
+		unsigned char* data = stbi_load(sourcePath.c_str(), &width, &height, &nrComponents, 0);
 		if (data)
 		{
-			GLenum format = sourcePath.find(".png") != std::string::npos ? GL_RGBA : GL_RGB;
-			glTexImage2D(_target, 0, GL_RGB, _width, _height, 0, format, GL_UNSIGNED_BYTE, data);
-			glGenerateMipmap(_target);
+			GLenum format;
+			if (nrComponents == 1)
+			{
+				format = GL_RED;
+			}
+			else if (nrComponents == 3)
+			{
+				format = GL_RGB;
+			}
+			else if (nrComponents == 4)
+			{
+				format = GL_RGBA;
+			}
+
+			glBindTexture(target, _id);
+			glTexImage2D(target, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
+			glGenerateMipmap(target);
+
+			glTexParameteri(target, wrapping, wrapping);
+			glTexParameteri(target, wrapping, wrapping);
+			glTexParameteri(target, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+			glTexParameteri(target, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+			stbi_image_free(data);
 		}
 		else
 		{
-			std::cout << "Failed to load texture" << std::endl;
+			std::cout << "Texture failed to load at path: " << sourcePath << std::endl;
+			stbi_image_free(data);
 		}
-		stbi_image_free(data);
 	}
+
 	void Texture::Activate(GLenum target) const
 	{
 		glActiveTexture(target);

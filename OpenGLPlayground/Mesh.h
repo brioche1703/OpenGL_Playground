@@ -1,28 +1,51 @@
 #pragma once
 
+#include "ShaderProgram.h"
+
+#include <string>
 #include <vector>
+
+#include <glm/glm.hpp>
+#include <glad/glad.h>
+
+#include "VertexArrayObject.h"
+#include "Buffer.h"
+#include "Texture.h"
 
 namespace Playground
 {
+
+#define MAX_BONE_INFLUENCE 4
+
+	struct Vertex
+	{
+		glm::vec3 _position;
+		glm::vec3 _normal;
+		glm::vec2 _texCoords;
+
+		glm::vec3 _tangent;
+		glm::vec3 _bitangent;
+
+		int _boneIDs[MAX_BONE_INFLUENCE];
+		float _weights[MAX_BONE_INFLUENCE];
+	};
+
 	class Mesh
 	{
 	public:
-		Mesh() {};
-		Mesh(const std::vector<float>& vertices) : _vertices(vertices) {}
+		Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Texture> textures);
 
-		const std::vector<float>& GetVertices() { return _vertices; }
-		size_t GetSize() { return sizeof(float) * _vertices.size(); };
+		void Draw(ShaderProgram& shaderProgram);
 
-		const std::vector<float>& GetVerticesWithNormals() { return _verticesWithNormals; }
-		size_t GetSizeWithNormals() { return sizeof(float) * _verticesWithNormals.size(); };
+	private:
+		void SetupMesh();
 
-		const std::vector<float>& GetVerticesWithNormalsAndTexCoords() { return _verticesWithNormalsAndTexCoords; }
-		size_t GetSizeWithNormalsAndTexCoords() { return sizeof(float) * _verticesWithNormalsAndTexCoords.size(); };
+	private:
+		std::vector<Vertex> _vertices;
+		std::vector<unsigned int> _indices;
+		std::vector<Texture> _textures;
 
-	protected:
-		std::vector<float> _vertices;
-		std::vector<float> _verticesWithNormals;
-		std::vector<float> _verticesWithNormalsAndTexCoords;
+		VertexArrayObject _VAO;
+		Buffer _VBO, _EBO;
 	};
 }
-

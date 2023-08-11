@@ -45,9 +45,9 @@ namespace Playground
 		_VBO.Bind(GL_ARRAY_BUFFER);
 		_VBO.Data(GL_ARRAY_BUFFER, cube.GetSize(), &cube.GetVertices()[0], GL_STATIC_DRAW);
 		VertexAttribute vertexAttrib;
-		vertexAttrib.Set(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+		vertexAttrib.SetAttributePointer(glVertexAttribPointer, 0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
 		vertexAttrib.Enable(0);
-		vertexAttrib.Set(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+		vertexAttrib.SetAttributePointer(glVertexAttribPointer, 1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
 		vertexAttrib.Enable(1);
 
 		glEnable(GL_DEPTH_TEST);

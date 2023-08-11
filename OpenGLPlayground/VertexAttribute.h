@@ -10,8 +10,13 @@ namespace Playground
 	public:
 		VertexAttribute();
 
-		void Set(GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const void* pointer = (void*)0);
 		void Enable(GLuint index);
+
+		template<typename F, typename... V>
+		void SetAttributePointer(const F& fnc, const V&... values)
+		{
+			fnc(values...);
+		}
 	};
 }
 

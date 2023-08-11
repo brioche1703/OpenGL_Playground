@@ -41,11 +41,11 @@ namespace Playground
 		_VBO.Bind(GL_ARRAY_BUFFER);
 		_VBO.Data(GL_ARRAY_BUFFER, cube.GetSizeWithNormalsAndTexCoords(), &cube.GetVerticesWithNormalsAndTexCoords()[0], GL_STATIC_DRAW);
 		VertexAttribute vertexAttrib;
-		vertexAttrib.Set(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
+		vertexAttrib.SetAttributePointer(glVertexAttribPointer, 0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
 		vertexAttrib.Enable(0);
-		vertexAttrib.Set(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
+		vertexAttrib.SetAttributePointer(glVertexAttribPointer, 1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
 		vertexAttrib.Enable(1);
-		vertexAttrib.Set(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+		vertexAttrib.SetAttributePointer(glVertexAttribPointer, 2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
 		vertexAttrib.Enable(2);
 
 		// Light
@@ -63,7 +63,7 @@ namespace Playground
 		_VBO.Bind(GL_ARRAY_BUFFER);
 		_VBO.Data(GL_ARRAY_BUFFER, cube.GetSizeWithNormalsAndTexCoords(), &cube.GetVerticesWithNormalsAndTexCoords()[0], GL_STATIC_DRAW);
 		VertexAttribute vertexAttribLight;
-		vertexAttribLight.Set(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
+		vertexAttribLight.SetAttributePointer(glVertexAttribPointer, 0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
 		vertexAttribLight.Enable(0);
 
 		glEnable(GL_DEPTH_TEST);

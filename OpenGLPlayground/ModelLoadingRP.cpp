@@ -22,8 +22,6 @@ namespace Playground
 {
 	void ModelLoadingRP::Init()
 	{
-		stbi_set_flip_vertically_on_load(true);  
-
 		glEnable(GL_DEPTH_TEST);
 
 		VertexShader vertexShader("shaders/modelLoading_vs.glsl");
