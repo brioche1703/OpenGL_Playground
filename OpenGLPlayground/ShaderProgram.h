@@ -26,7 +26,7 @@ namespace Playground
 		void Delete();
 
 		template<typename F, typename... V>
-		void SetUniformLocation(const F& fnc, std::string name, const V&... values)
+		void SetUniformLocation(const F& fnc, std::string name, const V&... values) const
 		{
 			fnc(GetUniformLocation(name), values...);
 		}

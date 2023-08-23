@@ -14,23 +14,18 @@ namespace Playground
 
 #define MAX_LIGHTS_NUMBER 10
 
+	class LightSystem;
 	class ModelLoadingLitRP : public RenderingPipeline
 	{
 	public:
-		~ModelLoadingLitRP() { delete _model; _model = nullptr; }
+		~ModelLoadingLitRP();
 		virtual void Init() override;
 		virtual void Draw(Window* window, Camera* camera) override;
 		virtual void Clear() override;
 
 	private:
 		ShaderProgram _shaderProgram;
-
-		DirectionalLight _directionalLight;
-		std::vector<PointLight> _pointLights;
-		SpotLight _spotLight;
-
-		Material _material;
-
+		LightSystem* _lightSystem;
 		Model* _model = nullptr;
 	};
 
