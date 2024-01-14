@@ -11,11 +11,11 @@ namespace Playground
 	public:
 		Window();
 
-		GLFWwindow* GetWindowPtr() { return _window; };
-		int GetWidth() { return _width; }
-		int GetHeight() { return _height; }
+		inline GLFWwindow* GetWindowPtr() const { return _window; };
+		inline int GetWidth() const { return _width; }
+		inline int GetHeight() const { return _height; }
 
-		bool ShouldClose();
+		bool ShouldClose() const;
 
 	private:
 		static void FramebufferSizeCallback(GLFWwindow* window, int width, int height);

@@ -28,8 +28,7 @@ namespace Playground
 			{
 				format = GL_RGB;
 			}
-			else if (nrComponents == 4)
-			{
+			else {
 				format = GL_RGBA;
 			}
 

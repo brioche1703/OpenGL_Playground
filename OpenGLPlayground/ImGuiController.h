@@ -6,8 +6,6 @@
 
 namespace Playground
 {
-	class Window;
-
 	class ImGuiController
 	{
 	public:

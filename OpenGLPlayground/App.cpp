@@ -1,7 +1,5 @@
 #include "App.h"
 
-#include <iostream>
-#include <stdexcept>
 #include <stbi/stb_image.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -10,7 +8,6 @@
 #include "Window.h"
 #include "Input.h"
 #include "Camera.h"
-#include "Signal.h"
 #include "RenderingPipeline.h"
 #include "ImGuiController.h"
 #include "BasicMultipleCubesRP.h"
@@ -22,9 +19,6 @@
 
 namespace Playground
 {
-	App::App()
-	{}
-
 	App::~App()
 	{
 		_imguiController->Shutdown();

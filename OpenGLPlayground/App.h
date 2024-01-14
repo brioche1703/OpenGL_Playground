@@ -3,8 +3,6 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-#include <vector>
-
 namespace Playground
 {
 	class Window;
@@ -27,7 +25,6 @@ namespace Playground
 		};
 
 	public:
-		App();
 		~App();
 
 		void Init();

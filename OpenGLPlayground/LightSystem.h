@@ -4,14 +4,13 @@
 
 #include "DirectionalLight.h"
 #include "PointLight.h"
+#include "SpotLight.h"
 #include "VertexArrayObject.h"
 #include "Buffer.h"
 #include "ShaderProgram.h"
 
 namespace Playground
 {
-	class SpotLight;
-
 	class LightSystem
 	{
 	public:

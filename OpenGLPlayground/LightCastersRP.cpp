@@ -88,7 +88,7 @@ namespace Playground
 		glEnable(GL_DEPTH_TEST);
 	}
 
-	void LightCastersRP::Draw(Window* window, Camera* camera)
+	void LightCastersRP::Draw(const Window* const window, const Camera* const camera)
 	{
 		glClearColor(0.2f, 0.2f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

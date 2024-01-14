@@ -1,7 +1,5 @@
 #include "ImGuiController.h"
 
-#include "Window.h"
-
 namespace Playground
 {
 	ImGuiController::ImGuiController(GLFWwindow* window)

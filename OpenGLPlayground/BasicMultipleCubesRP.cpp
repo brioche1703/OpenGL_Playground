@@ -3,8 +3,6 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-#include <iostream>
-#include <stdexcept>
 #include <vector>
 
 #include <stbi/stb_image.h>
@@ -22,7 +20,6 @@
 #include "Window.h"
 #include "Input.h"
 #include "Camera.h"
-#include "Signal.h"
 #include "CubeMesh.h"
 
 namespace Playground
@@ -53,7 +50,7 @@ namespace Playground
 		glEnable(GL_DEPTH_TEST);
 	}
 
-	void BasicMultipleCubesRP::Draw(Window* window, Camera* camera)
+	void BasicMultipleCubesRP::Draw(const Window* const window, const Camera* const camera)
 	{
 		glm::vec3 cubePositions[] = {
 			glm::vec3(0.0f,  0.0f,  0.0f),

@@ -8,8 +8,9 @@ namespace Playground
 	class RenderingPipeline
 	{
 	public:
+        virtual ~RenderingPipeline() = default;
 		virtual void Init() = 0;
-		virtual void Draw(Window* window, Camera* camera) = 0;
+		virtual void Draw(const Window* const window, const Camera* const camera) = 0;
 		virtual void Clear() = 0;
 	};
 }

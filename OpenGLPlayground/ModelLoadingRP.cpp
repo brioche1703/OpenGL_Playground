@@ -36,7 +36,7 @@ namespace Playground
 		fragmentShader.Delete();
 	}
 
-	void ModelLoadingRP::Draw(Window* window, Camera* camera)
+	void ModelLoadingRP::Draw(const Window* const window, const Camera* const camera)
 	{
 		glClearColor(0.2f, 0.2f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

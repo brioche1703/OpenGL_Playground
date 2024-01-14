@@ -3,9 +3,6 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-#include <iostream>
-#include <filesystem>
-#include <stdexcept>
 #include <stbi/stb_image.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -16,8 +13,6 @@
 #include "Window.h"
 #include "Input.h"
 #include "Camera.h"
-#include "Signal.h"
-#include "LightSystem.h"
 
 namespace Playground
 {
@@ -46,7 +41,7 @@ namespace Playground
 		pointLights.push_back(PointLight(pointLightPositions[2], pointLightColors[2], pointLightColors[2], pointLightColors[2]));
 		pointLights.push_back(PointLight(pointLightPositions[3], pointLightColors[3], pointLightColors[3], pointLightColors[3]));
 
-		_lightSystem = new LightSystem(pointLights);
+		_lightSystem = std::make_unique<LightSystem>(pointLights);
 
 		VertexShader vertexShader("shaders/modelLoading_vs.glsl");
 		FragmentShader fragmentShader("shaders/modelLoadingLit_fs.glsl");
@@ -54,7 +49,7 @@ namespace Playground
 		_shaderProgram.AttachShader({ vertexShader, fragmentShader });
 		_shaderProgram.LinkProgram();
 
-		_model = new Model("models/backpack/backpack.obj");
+		_model = std::make_unique<Model>("models/backpack/backpack.obj");
 
 		vertexShader.Delete();
 		fragmentShader.Delete();
@@ -62,7 +57,7 @@ namespace Playground
 		_lightSystem->Init();
 	}
 
-	void ModelLoadingLitRP::Draw(Window* window, Camera* camera)
+	void ModelLoadingLitRP::Draw(const Window* const window, const Camera* const camera)
 	{
 		glClearColor(0.2f, 0.2f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -89,15 +84,5 @@ namespace Playground
 	void ModelLoadingLitRP::Clear()
 	{
 		_shaderProgram.Delete();
-		delete _model;
-	}
-
-	ModelLoadingLitRP::~ModelLoadingLitRP() 
-	{
-		delete _model; 
-		delete _lightSystem;
-
-		_model = nullptr;
-		_lightSystem = nullptr;
 	}
 }

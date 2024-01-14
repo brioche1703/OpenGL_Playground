@@ -2,8 +2,6 @@
 
 #include "Signal.h"
 
-#include <set>
-
 struct GLFWwindow;
 
 namespace Playground

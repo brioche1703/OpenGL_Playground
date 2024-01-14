@@ -20,7 +20,7 @@ namespace Playground
 	{
 	public:
 		virtual void Init() override;
-		virtual void Draw(Window* window, Camera* camera) override;
+		virtual void Draw(const Window* const window, const Camera* const camera) override;
 		virtual void Clear() override;
 
 	private:

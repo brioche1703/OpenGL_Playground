@@ -27,7 +27,7 @@ namespace Playground
 		glfwSetFramebufferSizeCallback(_window, framebuffer_size_callback);
 	}
 
-	bool Window::ShouldClose()
+	bool Window::ShouldClose() const
 	{
 		return glfwWindowShouldClose(_window);
 	}

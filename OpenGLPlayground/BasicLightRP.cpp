@@ -3,8 +3,6 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-#include <iostream>
-#include <stdexcept>
 #include <stbi/stb_image.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -13,11 +11,9 @@
 #include "VertexShader.h"
 #include "FragmentShader.h"
 #include "VertexAttribute.h"
-#include "Texture.h"
 #include "Window.h"
 #include "Input.h"
 #include "Camera.h"
-#include "Signal.h"
 #include "CubeMesh.h"
 #include "Material.h"
 
@@ -67,7 +63,7 @@ namespace Playground
 		glEnable(GL_DEPTH_TEST);
 	}
 
-	void BasicLightRP::Draw(Window* window, Camera* camera)
+	void BasicLightRP::Draw(const Window* const window, const Camera* const camera)
 	{
 		glClearColor(0.2f, 0.2f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
