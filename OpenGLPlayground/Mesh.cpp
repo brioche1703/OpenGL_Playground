@@ -9,7 +9,10 @@ namespace Playground
 {
 Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Texture> textures,
            float shininess)
-    : _vertices(vertices), _indices(indices), _textures(textures), _shininess(shininess)
+    : _vertices(vertices)
+    , _indices(indices)
+    , _textures(textures)
+    , _shininess(shininess)
 {
     SetupMesh();
 }

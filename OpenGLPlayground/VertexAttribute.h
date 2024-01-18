@@ -7,14 +7,11 @@ namespace Playground
 {
 class VertexAttribute
 {
-  public:
+public:
     VertexAttribute();
 
     void Enable(GLuint index);
 
-    template <typename F, typename... V> void SetAttributePointer(const F &fnc, const V &...values)
-    {
-        fnc(values...);
-    }
+    template <typename F, typename... V> void SetAttributePointer(const F &fnc, const V &...values) { fnc(values...); }
 };
 } // namespace Playground

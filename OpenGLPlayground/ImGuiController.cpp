@@ -2,9 +2,9 @@
 
 namespace Playground
 {
-ImGuiController::ImGuiController(GLFWwindow *window) : _window(window)
-{
-}
+ImGuiController::ImGuiController(GLFWwindow *window)
+    : _window(window)
+{}
 
 void ImGuiController::Init()
 {

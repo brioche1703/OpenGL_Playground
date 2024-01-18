@@ -7,7 +7,7 @@ namespace Playground
 {
 class Camera
 {
-  public:
+public:
     enum Movement
     {
         FORWARD = GLFW_KEY_W,
@@ -18,22 +18,13 @@ class Camera
         DOWN = GLFW_KEY_Q,
     };
 
-  public:
+public:
     Camera(glm::vec3 pos = glm::vec3(0.0f, 0.5f, 5.0f), glm::vec3 front = glm::vec3(0.0f, 0.0f, -1.0f),
            glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f));
 
-    glm::vec3 GetPosition() const
-    {
-        return _pos;
-    }
-    glm::vec3 GetFront() const
-    {
-        return _front;
-    }
-    float GetFov() const
-    {
-        return _fov;
-    }
+    glm::vec3 GetPosition() const { return _pos; }
+    glm::vec3 GetFront() const { return _front; }
+    float GetFov() const { return _fov; }
 
     glm::mat4 LookAt() const;
     void Move(const Movement movement);
@@ -41,13 +32,13 @@ class Camera
     void Zoom(const double yOffset);
     void Reset();
 
-  public: // SLOTS
+public: // SLOTS
     void OnInputReceive(int key);
 
-  private:
+private:
     glm::vec3 GetRightVector() const;
 
-  private:
+private:
     float _speed = 0.05f;
     glm::vec3 _pos;
     glm::vec3 _front;

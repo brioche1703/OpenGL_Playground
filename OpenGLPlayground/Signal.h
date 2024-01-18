@@ -7,7 +7,7 @@ namespace Playground
 {
 template <typename... Args> class Signal
 {
-  public:
+public:
     Signal() = default;
     ~Signal() = default;
     Signal(const Signal &) = delete;
@@ -21,9 +21,10 @@ template <typename... Args> class Signal
         return *this;
     }
 
-    Signal(Signal &&other) noexcept : _slots(std::move(other._slots)), _currentId(other._currentId)
-    {
-    }
+    Signal(Signal &&other) noexcept
+        : _slots(std::move(other._slots))
+        , _currentId(other._currentId)
+    {}
 
     Signal &operator=(Signal &&other)
     {
@@ -46,15 +47,9 @@ template <typename... Args> class Signal
         return Connect([=](Args... args) { (inst->*func)(args...); });
     }
 
-    void Disconnect(int id) const
-    {
-        _slots.erase(id);
-    }
+    void Disconnect(int id) const { _slots.erase(id); }
 
-    void DisconnectAll(int id) const
-    {
-        _slots.clear;
-    }
+    void DisconnectAll(int id) const { _slots.clear; }
 
     void Emit(Args... params)
     {
@@ -84,7 +79,7 @@ template <typename... Args> class Signal
         }
     }
 
-  private:
+private:
     mutable std::map<int, std::function<void(Args...)>> _slots;
     mutable int _currentId = 0;
 };

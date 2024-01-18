@@ -10,7 +10,7 @@ class Camera;
 
 class Input
 {
-  public:
+public:
     Input(GLFWwindow *window);
     Input(Input &other) = delete;
     void operator=(const Input &other) = delete;
@@ -20,17 +20,17 @@ class Input
     void ProcessInput();
     void ConnectCamera(Camera *const camera);
 
-  private:
+private:
     static void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mods);
     static void MouseCallback(GLFWwindow *window, double xpos, double ypos);
     static void ScrollCallback(GLFWwindow *window, double xOffset, double yOffset);
 
-  public: // SIGNALS
+public: // SIGNALS
     Signal<int> OnInputPressed;
     Signal<double, double> OnMouseMove;
     Signal<double> OnMouseScroll;
 
-  private:
+private:
     GLFWwindow *_window = nullptr;
 
     float _lastMouseX = 0.0f;

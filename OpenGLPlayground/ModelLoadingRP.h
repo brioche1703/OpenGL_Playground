@@ -12,7 +12,7 @@ namespace Playground
 
 class ModelLoadingRP : public RenderingPipeline
 {
-  public:
+public:
     ~ModelLoadingRP()
     {
         delete _model;
@@ -22,7 +22,7 @@ class ModelLoadingRP : public RenderingPipeline
     virtual void Draw(const Window *const window, const Camera *const camera) override;
     virtual void Clear() override;
 
-  private:
+private:
     ShaderProgram _shaderProgram;
     Model *_model = nullptr;
 };

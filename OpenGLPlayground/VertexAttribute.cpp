@@ -3,8 +3,7 @@
 namespace Playground
 {
 VertexAttribute::VertexAttribute()
-{
-}
+{}
 
 void VertexAttribute::Enable(GLuint index)
 {

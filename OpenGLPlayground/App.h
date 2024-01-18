@@ -13,7 +13,7 @@ class ImGuiController;
 
 class App
 {
-  private:
+private:
     enum PipelineId
     {
         BASIC_LIGHT = 0,
@@ -24,20 +24,20 @@ class App
         MODEL_LOADING_LIT = 5,
     };
 
-  public:
+public:
     ~App();
 
     void Init();
     void GameLoop();
 
-  private:
+private:
     void SetPipeline(const PipelineId newPipeline);
     void ClearActivePipeline();
     void DeleteActivePipeline();
 
     void ImGuiMenu();
 
-  private:
+private:
     Window *_window = nullptr;
     ImGuiController *_imguiController = nullptr;
     Input *_input = nullptr;

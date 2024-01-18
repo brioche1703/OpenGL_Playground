@@ -6,7 +6,7 @@ namespace Playground
 {
 class VertexShader : public Shader
 {
-  public:
+public:
     VertexShader(const char *sourcePath);
 };
 } // namespace Playground

@@ -7,13 +7,13 @@ namespace Playground
 {
 class Buffer
 {
-  public:
+public:
     Buffer();
     void Bind(GLenum target);
     void Data(GLenum target, GLsizeiptr size, const GLvoid *data, GLenum usage);
     void Delete();
 
-  private:
+private:
     unsigned int _id;
 };
 

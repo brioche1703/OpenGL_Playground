@@ -6,15 +6,12 @@ namespace Playground
 {
 class Shader
 {
-  public:
+public:
     const std::string GetShaderCode(const char *shaderPath) const;
-    unsigned int Id()
-    {
-        return _id;
-    }
+    unsigned int Id() { return _id; }
     void Delete();
 
-  protected:
+protected:
     unsigned int _id;
 };
 } // namespace Playground

@@ -8,7 +8,8 @@ namespace Playground
 {
 static Input *_instance = nullptr;
 
-Input::Input(GLFWwindow *window) : _window(window)
+Input::Input(GLFWwindow *window)
+    : _window(window)
 {
     if (_instance == nullptr)
     {

@@ -8,28 +8,19 @@ namespace Playground
 
 class Window
 {
-  public:
+public:
     Window();
 
-    inline GLFWwindow *GetWindowPtr() const
-    {
-        return _window;
-    };
-    inline int GetWidth() const
-    {
-        return _width;
-    }
-    inline int GetHeight() const
-    {
-        return _height;
-    }
+    inline GLFWwindow *GetWindowPtr() const { return _window; };
+    inline int GetWidth() const { return _width; }
+    inline int GetHeight() const { return _height; }
 
     bool ShouldClose() const;
 
-  private:
+private:
     static void FramebufferSizeCallback(GLFWwindow *window, int width, int height);
 
-  private:
+private:
     int _width = 1600;
     int _height = 1200;
 

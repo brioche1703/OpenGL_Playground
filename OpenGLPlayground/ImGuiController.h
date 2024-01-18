@@ -8,7 +8,7 @@ namespace Playground
 {
 class ImGuiController
 {
-  public:
+public:
     ImGuiController(GLFWwindow *window);
 
     void Init();
@@ -16,7 +16,7 @@ class ImGuiController
     void Render();
     void Shutdown();
 
-  private:
+private:
     GLFWwindow *_window = nullptr;
 };
 } // namespace Playground

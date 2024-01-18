@@ -12,7 +12,8 @@
 
 namespace Playground
 {
-LightSystem::LightSystem(std::vector<PointLight> pointLights) : _pointLights(pointLights)
+LightSystem::LightSystem(std::vector<PointLight> pointLights)
+    : _pointLights(pointLights)
 {
     _spotLights.push_back(SpotLight());
 }

@@ -3,8 +3,6 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-#include <iostream>
-#include <stdexcept>
 #include <stbi/stb_image.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -17,7 +15,6 @@
 #include "Window.h"
 #include "Input.h"
 #include "Camera.h"
-#include "Signal.h"
 #include "CubeMesh.h"
 #include "Material.h"
 

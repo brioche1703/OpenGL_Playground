@@ -12,13 +12,10 @@ class Shader;
 
 class ShaderProgram
 {
-  public:
+public:
     ShaderProgram();
 
-    unsigned int GetId() const
-    {
-        return _id;
-    }
+    unsigned int GetId() const { return _id; }
 
     void AttachShader(Shader shader);
     void AttachShader(std::vector<Shader> shaders);
@@ -33,7 +30,7 @@ class ShaderProgram
         fnc(GetUniformLocation(name), values...);
     }
 
-  private:
+private:
     unsigned int _id;
 };
 } // namespace Playground

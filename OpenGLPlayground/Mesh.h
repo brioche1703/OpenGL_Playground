@@ -2,7 +2,6 @@
 
 #include "ShaderProgram.h"
 
-#include <string>
 #include <vector>
 
 #include <glm/glm.hpp>
@@ -32,16 +31,16 @@ struct Vertex
 
 class Mesh
 {
-  public:
+public:
     Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Texture> textures,
          float shininess = 64.0f);
 
     void Draw(ShaderProgram &shaderProgram);
 
-  private:
+private:
     void SetupMesh();
 
-  private:
+private:
     std::vector<Vertex> _vertices;
     std::vector<unsigned int> _indices;
     std::vector<Texture> _textures;

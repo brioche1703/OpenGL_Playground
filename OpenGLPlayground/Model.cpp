@@ -8,7 +8,8 @@
 
 namespace Playground
 {
-Model::Model(const std::string &path, bool gamma) : _gammaCorrection(gamma)
+Model::Model(const std::string &path, bool gamma)
+    : _gammaCorrection(gamma)
 {
     LoadModel(path);
 }

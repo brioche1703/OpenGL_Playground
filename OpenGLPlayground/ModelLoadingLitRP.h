@@ -14,12 +14,12 @@ namespace Playground
 
 class ModelLoadingLitRP : public RenderingPipeline
 {
-  public:
+public:
     virtual void Init() override;
     virtual void Draw(const Window *const window, const Camera *const camera) override;
     virtual void Clear() override;
 
-  private:
+private:
     ShaderProgram _shaderProgram;
     std::unique_ptr<LightSystem> _lightSystem;
     std::unique_ptr<Model> _model;

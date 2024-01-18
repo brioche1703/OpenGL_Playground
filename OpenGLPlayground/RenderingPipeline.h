@@ -7,7 +7,7 @@ class Camera;
 
 class RenderingPipeline
 {
-  public:
+public:
     virtual ~RenderingPipeline() = default;
     virtual void Init() = 0;
     virtual void Draw(const Window *const window, const Camera *const camera) = 0;

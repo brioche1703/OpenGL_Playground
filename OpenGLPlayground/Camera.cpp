@@ -5,9 +5,11 @@
 
 namespace Playground
 {
-Camera::Camera(glm::vec3 pos, glm::vec3 front, glm::vec3 up) : _pos(pos), _front(front), _up(up)
-{
-}
+Camera::Camera(glm::vec3 pos, glm::vec3 front, glm::vec3 up)
+    : _pos(pos)
+    , _front(front)
+    , _up(up)
+{}
 
 glm::mat4 Camera::LookAt() const
 {

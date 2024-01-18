@@ -12,12 +12,12 @@ namespace Playground
 {
 class BasicLightRP : public RenderingPipeline
 {
-  public:
+public:
     virtual void Init() override;
     virtual void Draw(const Window *const window, const Camera *const camera) override;
     virtual void Clear() override;
 
-  private:
+private:
     ShaderProgram _shaderProgram;
     ShaderProgram _lightCubeShaderProgram;
     VertexArrayObject _VAO, _VAOLight;

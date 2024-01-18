@@ -6,7 +6,7 @@ namespace Playground
 {
 class CubeMesh : public SimpleMesh
 {
-  public:
+public:
     CubeMesh();
 };
 } // namespace Playground

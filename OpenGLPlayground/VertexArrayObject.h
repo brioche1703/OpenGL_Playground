@@ -4,13 +4,13 @@ namespace Playground
 {
 class VertexArrayObject
 {
-  public:
+public:
     VertexArrayObject();
     void Bind();
     void Unbind();
     void Delete();
 
-  private:
+private:
     unsigned int _id;
 };
 

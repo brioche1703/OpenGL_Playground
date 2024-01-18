@@ -6,7 +6,9 @@
 namespace Playground
 {
 Texture::Texture(const std::string &sourcePath, GLenum target, bool flipY, int wrapping, const std::string &type)
-    : _path(sourcePath), _type(type), _target(target)
+    : _type(type)
+    , _path(sourcePath)
+    , _target(target)
 {
     glGenTextures(1, &_id);
     int width, height, nrComponents;

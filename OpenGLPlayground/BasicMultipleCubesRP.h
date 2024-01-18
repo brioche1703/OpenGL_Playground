@@ -12,12 +12,12 @@ namespace Playground
 
 class BasicMultipleCubesRP : public RenderingPipeline
 {
-  public:
+public:
     virtual void Init() override;
     virtual void Draw(const Window *const window, const Camera *const camera) override;
     virtual void Clear() override;
 
-  private:
+private:
     ShaderProgram _shaderProgram;
     VertexArrayObject _VAO;
     Buffer _VBO;
