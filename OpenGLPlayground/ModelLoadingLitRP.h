@@ -12,17 +12,17 @@ namespace Playground
 
 #define MAX_LIGHTS_NUMBER 10
 
-	class ModelLoadingLitRP : public RenderingPipeline
-	{
-	public:
-		virtual void Init() override;
-		virtual void Draw(const Window* const window,const Camera* const camera) override;
-		virtual void Clear() override;
+class ModelLoadingLitRP : public RenderingPipeline
+{
+  public:
+    virtual void Init() override;
+    virtual void Draw(const Window *const window, const Camera *const camera) override;
+    virtual void Clear() override;
 
-	private:
-		ShaderProgram _shaderProgram;
-        std::unique_ptr<LightSystem> _lightSystem;
-        std::unique_ptr<Model> _model;
-	};
+  private:
+    ShaderProgram _shaderProgram;
+    std::unique_ptr<LightSystem> _lightSystem;
+    std::unique_ptr<Model> _model;
+};
 
-}
+} // namespace Playground

@@ -4,9 +4,9 @@
 
 namespace Playground
 {
-	class VertexShader : public Shader
-	{
-	public:
-		VertexShader(const char* sourcePath);
-	};
-}
+class VertexShader : public Shader
+{
+  public:
+    VertexShader(const char *sourcePath);
+};
+} // namespace Playground

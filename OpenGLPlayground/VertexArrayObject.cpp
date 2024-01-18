@@ -5,20 +5,20 @@
 
 namespace Playground
 {
-	VertexArrayObject::VertexArrayObject()
-	{
-		glGenVertexArrays(1, &_id);
-	}
-	void VertexArrayObject::Bind()
-	{
-		glBindVertexArray(_id);
-	}
-	void VertexArrayObject::Unbind()
-	{
-		glBindVertexArray(0);
-	}
-	void VertexArrayObject::Delete()
-	{
-		glDeleteVertexArrays(1, &_id);
-	}
+VertexArrayObject::VertexArrayObject()
+{
+    glGenVertexArrays(1, &_id);
 }
+void VertexArrayObject::Bind()
+{
+    glBindVertexArray(_id);
+}
+void VertexArrayObject::Unbind()
+{
+    glBindVertexArray(0);
+}
+void VertexArrayObject::Delete()
+{
+    glDeleteVertexArrays(1, &_id);
+}
+} // namespace Playground

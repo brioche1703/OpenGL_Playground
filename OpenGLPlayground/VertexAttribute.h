@@ -5,18 +5,16 @@
 
 namespace Playground
 {
-	class VertexAttribute
-	{
-	public:
-		VertexAttribute();
+class VertexAttribute
+{
+  public:
+    VertexAttribute();
 
-		void Enable(GLuint index);
+    void Enable(GLuint index);
 
-		template<typename F, typename... V>
-		void SetAttributePointer(const F& fnc, const V&... values)
-		{
-			fnc(values...);
-		}
-	};
-}
-
+    template <typename F, typename... V> void SetAttributePointer(const F &fnc, const V &...values)
+    {
+        fnc(values...);
+    }
+};
+} // namespace Playground

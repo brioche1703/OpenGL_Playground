@@ -4,10 +4,9 @@
 
 namespace Playground
 {
-	class CubeMesh : public SimpleMesh
-	{
-	public:
-		CubeMesh();
-	};
-}
-
+class CubeMesh : public SimpleMesh
+{
+  public:
+    CubeMesh();
+};
+} // namespace Playground

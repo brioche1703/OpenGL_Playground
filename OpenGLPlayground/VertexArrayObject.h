@@ -2,16 +2,16 @@
 
 namespace Playground
 {
-	class VertexArrayObject
-	{
-	public:
-		VertexArrayObject();
-		void Bind();
-		void Unbind();
-		void Delete();
+class VertexArrayObject
+{
+  public:
+    VertexArrayObject();
+    void Bind();
+    void Unbind();
+    void Delete();
 
-	private:
-		unsigned int _id;
-	};
+  private:
+    unsigned int _id;
+};
 
-}
+} // namespace Playground

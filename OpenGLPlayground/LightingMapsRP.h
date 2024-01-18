@@ -11,25 +11,25 @@
 
 namespace Playground
 {
-	class LightingMaps : public RenderingPipeline
-	{
-	public:
-		virtual void Init() override;
-		virtual void Draw(const Window* const window, const Camera* const camera) override;
-		virtual void Clear() override;
+class LightingMaps : public RenderingPipeline
+{
+  public:
+    virtual void Init() override;
+    virtual void Draw(const Window *const window, const Camera *const camera) override;
+    virtual void Clear() override;
 
-	private:
-		ShaderProgram _shaderProgram;
-		ShaderProgram _lightCubeShaderProgram;
-		VertexArrayObject _VAO, _VAOLight;
-		Buffer _VBO;
+  private:
+    ShaderProgram _shaderProgram;
+    ShaderProgram _lightCubeShaderProgram;
+    VertexArrayObject _VAO, _VAOLight;
+    Buffer _VBO;
 
-		PointLight light;
-		Material material;
+    PointLight light;
+    Material material;
 
-		Texture _textureContainer = Texture("images/container2.png", GL_TEXTURE_2D, true);
-		Texture _textureContainerSpecular = Texture("images/container2_specular.png", GL_TEXTURE_2D, true);
-		Texture _textureContainerEmissive = Texture("images/matrix2.png", GL_TEXTURE_2D, true);
-	};
+    Texture _textureContainer = Texture("images/container2.png", GL_TEXTURE_2D, true);
+    Texture _textureContainerSpecular = Texture("images/container2_specular.png", GL_TEXTURE_2D, true);
+    Texture _textureContainerEmissive = Texture("images/matrix2.png", GL_TEXTURE_2D, true);
+};
 
-}
+} // namespace Playground

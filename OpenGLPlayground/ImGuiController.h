@@ -6,18 +6,17 @@
 
 namespace Playground
 {
-	class ImGuiController
-	{
-	public:
-		ImGuiController(GLFWwindow* window);
+class ImGuiController
+{
+  public:
+    ImGuiController(GLFWwindow *window);
 
-		void Init();
-		void SetRender();
-		void Render();
-		void Shutdown();
-		
-	private:
-		GLFWwindow* _window = nullptr;
-	};
-}
+    void Init();
+    void SetRender();
+    void Render();
+    void Shutdown();
 
+  private:
+    GLFWwindow *_window = nullptr;
+};
+} // namespace Playground

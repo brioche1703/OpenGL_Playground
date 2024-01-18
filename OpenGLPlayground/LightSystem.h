@@ -11,23 +11,22 @@
 
 namespace Playground
 {
-	class LightSystem
-	{
-	public:
-		LightSystem(std::vector<PointLight> pointLights);
+class LightSystem
+{
+  public:
+    LightSystem(std::vector<PointLight> pointLights);
 
-		void Init();
-		void SetUniforms(const ShaderProgram& shaderProgram, const glm::mat4& view, const glm::mat4& proj); 
-		void DrawLightsObjects(const glm::mat4& view, const glm::mat4& proj);
+    void Init();
+    void SetUniforms(const ShaderProgram &shaderProgram, const glm::mat4 &view, const glm::mat4 &proj);
+    void DrawLightsObjects(const glm::mat4 &view, const glm::mat4 &proj);
 
-	private:
-		DirectionalLight _directionalLight;
-		std::vector<PointLight> _pointLights;
-		std::vector<SpotLight> _spotLights;
+  private:
+    DirectionalLight _directionalLight;
+    std::vector<PointLight> _pointLights;
+    std::vector<SpotLight> _spotLights;
 
-		ShaderProgram _lightCubeShaderProgram;
-		VertexArrayObject _VAOLight;
-		Buffer _VBO;
-	};
-}
-
+    ShaderProgram _lightCubeShaderProgram;
+    VertexArrayObject _VAOLight;
+    Buffer _VBO;
+};
+} // namespace Playground

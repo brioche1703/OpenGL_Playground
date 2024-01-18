@@ -5,45 +5,45 @@
 
 namespace Playground
 {
-	class Window;
-	class Input;
-	class Camera;
-	class RenderingPipeline;
-	class ImGuiController;
+class Window;
+class Input;
+class Camera;
+class RenderingPipeline;
+class ImGuiController;
 
-	class App
-	{
-	private:
-		enum PipelineId	 
-		{
-			BASIC_LIGHT = 0,
-			BASIC_MULTIPLE_CUBES = 1,
-			LIGHTING_MAPS = 2,
-			LIGHT_CASTERS = 3,
-			MODEL_LOADING = 4,
-			MODEL_LOADING_LIT = 5,
-		};
+class App
+{
+  private:
+    enum PipelineId
+    {
+        BASIC_LIGHT = 0,
+        BASIC_MULTIPLE_CUBES = 1,
+        LIGHTING_MAPS = 2,
+        LIGHT_CASTERS = 3,
+        MODEL_LOADING = 4,
+        MODEL_LOADING_LIT = 5,
+    };
 
-	public:
-		~App();
+  public:
+    ~App();
 
-		void Init();
-		void GameLoop();
-	private:
-		void SetPipeline(const PipelineId newPipeline);
-		void ClearActivePipeline();
-		void DeleteActivePipeline();
+    void Init();
+    void GameLoop();
 
-		void ImGuiMenu();
+  private:
+    void SetPipeline(const PipelineId newPipeline);
+    void ClearActivePipeline();
+    void DeleteActivePipeline();
 
-	private:
-		Window* _window = nullptr;
-		ImGuiController* _imguiController = nullptr;
-		Input* _input = nullptr;
-		Camera* _camera = nullptr;
+    void ImGuiMenu();
 
-		PipelineId _activePipelineId = MODEL_LOADING_LIT;
-		RenderingPipeline* _activePipeline = nullptr;
-	};
-}
+  private:
+    Window *_window = nullptr;
+    ImGuiController *_imguiController = nullptr;
+    Input *_input = nullptr;
+    Camera *_camera = nullptr;
 
+    PipelineId _activePipelineId = MODEL_LOADING_LIT;
+    RenderingPipeline *_activePipeline = nullptr;
+};
+} // namespace Playground

@@ -16,28 +16,28 @@ namespace Playground
 
 #define MAX_LIGHTS_NUMBER 10
 
-	class LightCastersRP : public RenderingPipeline
-	{
-	public:
-		virtual void Init() override;
-		virtual void Draw(const Window* const window, const Camera* const camera) override;
-		virtual void Clear() override;
+class LightCastersRP : public RenderingPipeline
+{
+  public:
+    virtual void Init() override;
+    virtual void Draw(const Window *const window, const Camera *const camera) override;
+    virtual void Clear() override;
 
-	private:
-		ShaderProgram _shaderProgram;
-		ShaderProgram _lightCubeShaderProgram;
-		VertexArrayObject _VAO, _VAOLight;
-		Buffer _VBO;
+  private:
+    ShaderProgram _shaderProgram;
+    ShaderProgram _lightCubeShaderProgram;
+    VertexArrayObject _VAO, _VAOLight;
+    Buffer _VBO;
 
-		DirectionalLight _directionalLight;
-		std::vector<PointLight> _pointLights;
-		SpotLight _spotLight;
+    DirectionalLight _directionalLight;
+    std::vector<PointLight> _pointLights;
+    SpotLight _spotLight;
 
-		Material _material;
+    Material _material;
 
-		Texture _textureContainer = Texture("images/container2.png", GL_TEXTURE_2D, true);
-		Texture _textureContainerSpecular = Texture("images/container2_specular.png", GL_TEXTURE_2D, true);
-		Texture _textureContainerEmissive = Texture("images/matrix2.png", GL_TEXTURE_2D, true);
-	};
+    Texture _textureContainer = Texture("images/container2.png", GL_TEXTURE_2D, true);
+    Texture _textureContainerSpecular = Texture("images/container2_specular.png", GL_TEXTURE_2D, true);
+    Texture _textureContainerEmissive = Texture("images/matrix2.png", GL_TEXTURE_2D, true);
+};
 
-}
+} // namespace Playground

@@ -9,11 +9,11 @@ using namespace Playground;
 
 int main()
 {
-	App app;
-	app.Init();
+    App app;
+    app.Init();
 
-	app.GameLoop();
+    app.GameLoop();
 
-	glfwTerminate();
-	return 0;
+    glfwTerminate();
+    return 0;
 }

@@ -6,25 +6,34 @@
 namespace Playground
 {
 
-	class Window
-	{
-	public:
-		Window();
+class Window
+{
+  public:
+    Window();
 
-		inline GLFWwindow* GetWindowPtr() const { return _window; };
-		inline int GetWidth() const { return _width; }
-		inline int GetHeight() const { return _height; }
+    inline GLFWwindow *GetWindowPtr() const
+    {
+        return _window;
+    };
+    inline int GetWidth() const
+    {
+        return _width;
+    }
+    inline int GetHeight() const
+    {
+        return _height;
+    }
 
-		bool ShouldClose() const;
+    bool ShouldClose() const;
 
-	private:
-		static void FramebufferSizeCallback(GLFWwindow* window, int width, int height);
+  private:
+    static void FramebufferSizeCallback(GLFWwindow *window, int width, int height);
 
-	private:
-		int _width = 1600;
-		int _height = 1200;
+  private:
+    int _width = 1600;
+    int _height = 1200;
 
-		GLFWwindow* _window = nullptr;
-	};
+    GLFWwindow *_window = nullptr;
+};
 
-}
+} // namespace Playground

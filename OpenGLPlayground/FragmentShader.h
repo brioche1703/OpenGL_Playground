@@ -4,9 +4,9 @@
 
 namespace Playground
 {
-	class FragmentShader : public Shader
-	{
-	public:
-		FragmentShader(const char* sourcePath);
-	};
-}
+class FragmentShader : public Shader
+{
+  public:
+    FragmentShader(const char *sourcePath);
+};
+} // namespace Playground

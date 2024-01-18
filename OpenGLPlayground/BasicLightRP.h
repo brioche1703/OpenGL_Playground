@@ -10,21 +10,21 @@
 
 namespace Playground
 {
-	class BasicLightRP : public RenderingPipeline
-	{
-	public:
-		virtual void Init() override;
-		virtual void Draw(const Window* const window, const Camera* const camera) override;
-		virtual void Clear() override;
+class BasicLightRP : public RenderingPipeline
+{
+  public:
+    virtual void Init() override;
+    virtual void Draw(const Window *const window, const Camera *const camera) override;
+    virtual void Clear() override;
 
-	private:
-		ShaderProgram _shaderProgram;
-		ShaderProgram _lightCubeShaderProgram;
-		VertexArrayObject _VAO, _VAOLight;
-		Buffer _VBO;
+  private:
+    ShaderProgram _shaderProgram;
+    ShaderProgram _lightCubeShaderProgram;
+    VertexArrayObject _VAO, _VAOLight;
+    Buffer _VBO;
 
-		PointLight light;
-		Material material;
-	};
+    PointLight light;
+    Material material;
+};
 
-}
+} // namespace Playground

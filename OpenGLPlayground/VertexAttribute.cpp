@@ -2,11 +2,12 @@
 
 namespace Playground
 {
-	VertexAttribute::VertexAttribute()
-	{}
-
-	void VertexAttribute::Enable(GLuint index)
-	{
-		glEnableVertexAttribArray(index);
-	}
+VertexAttribute::VertexAttribute()
+{
 }
+
+void VertexAttribute::Enable(GLuint index)
+{
+    glEnableVertexAttribArray(index);
+}
+} // namespace Playground
