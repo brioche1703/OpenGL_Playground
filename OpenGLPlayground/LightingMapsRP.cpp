@@ -71,7 +71,7 @@ void LightingMaps::Init()
     glEnable(GL_DEPTH_TEST);
 }
 
-void LightingMaps::Draw(const Window *const window, const Camera *const camera)
+void LightingMaps::Draw(const std::unique_ptr<Window> &window, const std::unique_ptr<Camera> &camera)
 {
     glClearColor(0.2f, 0.2f, 0.3f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

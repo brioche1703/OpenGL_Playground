@@ -25,13 +25,13 @@ void ModelLoadingRP::Init()
     _shaderProgram.AttachShader({vertexShader, fragmentShader});
     _shaderProgram.LinkProgram();
 
-    _model = new Model("models/backpack/backpack.obj");
+    _model = std::make_unique<Model>("models/backpack/backpack.obj");
 
     vertexShader.Delete();
     fragmentShader.Delete();
 }
 
-void ModelLoadingRP::Draw(const Window *const window, const Camera *const camera)
+void ModelLoadingRP::Draw(const std::unique_ptr<Window> &window, const std::unique_ptr<Camera> &camera)
 {
     glClearColor(0.2f, 0.2f, 0.3f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -54,6 +54,5 @@ void ModelLoadingRP::Draw(const Window *const window, const Camera *const camera
 void ModelLoadingRP::Clear()
 {
     _shaderProgram.Delete();
-    delete _model;
 }
 } // namespace Playground

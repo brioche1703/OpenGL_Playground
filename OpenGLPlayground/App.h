@@ -2,6 +2,7 @@
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <memory>
 
 namespace Playground
 {
@@ -25,6 +26,9 @@ private:
     };
 
 public:
+    App() noexcept;
+    App(const App &other) = delete;
+    void operator=(const App &other) = delete;
     ~App();
 
     void Init();
@@ -33,17 +37,16 @@ public:
 private:
     void SetPipeline(const PipelineId newPipeline);
     void ClearActivePipeline();
-    void DeleteActivePipeline();
 
     void ImGuiMenu();
 
 private:
-    Window *_window = nullptr;
-    ImGuiController *_imguiController = nullptr;
-    Input *_input = nullptr;
-    Camera *_camera = nullptr;
-
     PipelineId _activePipelineId = MODEL_LOADING_LIT;
-    RenderingPipeline *_activePipeline = nullptr;
+
+    std::unique_ptr<Window> _window;
+    std::unique_ptr<ImGuiController> _imguiController;
+    std::unique_ptr<Input> _input;
+    std::unique_ptr<Camera> _camera;
+    std::unique_ptr<RenderingPipeline> _activePipeline;
 };
 } // namespace Playground

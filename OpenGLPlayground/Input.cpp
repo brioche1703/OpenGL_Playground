@@ -1,6 +1,7 @@
 #include "Input.h"
 
 #include <GLFW/glfw3.h>
+#include <memory>
 
 #include "Camera.h"
 
@@ -59,11 +60,11 @@ void Input::ProcessInput()
     }
 }
 
-void Input::ConnectCamera(Camera *const camera)
+void Input::ConnectCamera(std::unique_ptr<Camera> &camera)
 {
-    OnInputPressed.ConnectMember(camera, &Camera::OnInputReceive);
-    OnMouseMove.ConnectMember(camera, &Camera::ProcessMouseOffset);
-    OnMouseScroll.ConnectMember(camera, &Camera::Zoom);
+    OnInputPressed.ConnectMember(camera.get(), &Camera::OnInputReceive);
+    OnMouseMove.ConnectMember(camera.get(), &Camera::ProcessMouseOffset);
+    OnMouseScroll.ConnectMember(camera.get(), &Camera::Zoom);
 }
 
 // This callback processes only one input event

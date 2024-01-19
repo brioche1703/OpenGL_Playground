@@ -5,6 +5,9 @@
 
 namespace Playground
 {
+Camera::Camera()
+{}
+
 Camera::Camera(glm::vec3 pos, glm::vec3 front, glm::vec3 up)
     : _pos(pos)
     , _front(front)

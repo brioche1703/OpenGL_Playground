@@ -19,8 +19,8 @@ public:
     };
 
 public:
-    Camera(glm::vec3 pos = glm::vec3(0.0f, 0.5f, 5.0f), glm::vec3 front = glm::vec3(0.0f, 0.0f, -1.0f),
-           glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f));
+    Camera();
+    Camera(glm::vec3 pos, glm::vec3 front, glm::vec3 up);
 
     glm::vec3 GetPosition() const { return _pos; }
     glm::vec3 GetFront() const { return _front; }
@@ -40,9 +40,9 @@ private:
 
 private:
     float _speed = 0.05f;
-    glm::vec3 _pos;
-    glm::vec3 _front;
-    glm::vec3 _up;
+    glm::vec3 _pos = glm::vec3(0.0f, 0.5f, 5.0f);
+    glm::vec3 _front = glm::vec3(0.0f, 0.0f, -1.0f);
+    glm::vec3 _up = glm::vec3(0.0f, 1.0f, 0.0f);
 
     float _pitch = 0.0f;
     float _yaw = -90.0f;

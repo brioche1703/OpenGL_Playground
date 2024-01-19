@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Signal.h"
+#include <memory>
 
 struct GLFWwindow;
 
@@ -18,7 +19,7 @@ public:
     static Input *GetInstance();
 
     void ProcessInput();
-    void ConnectCamera(Camera *const camera);
+    void ConnectCamera(std::unique_ptr<Camera> &camera);
 
 private:
     static void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mods);

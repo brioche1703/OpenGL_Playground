@@ -50,7 +50,7 @@ void BasicMultipleCubesRP::Init()
     glEnable(GL_DEPTH_TEST);
 }
 
-void BasicMultipleCubesRP::Draw(const Window *const window, const Camera *const camera)
+void BasicMultipleCubesRP::Draw(const std::unique_ptr<Window> &window, const std::unique_ptr<Camera> &camera)
 {
     glm::vec3 cubePositions[] = {glm::vec3(0.0f, 0.0f, 0.0f),    glm::vec3(2.0f, 5.0f, -15.0f),
                                  glm::vec3(-1.5f, -2.2f, -2.5f), glm::vec3(-3.8f, -2.0f, -12.3f),

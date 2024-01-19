@@ -1,5 +1,6 @@
 #include "App.h"
 
+#include <memory>
 #include <stbi/stb_image.h>
 
 #include <glm/glm.hpp>
@@ -20,21 +21,20 @@
 
 namespace Playground
 {
+App::App() noexcept
+    : _window(std::make_unique<Window>())
+    , _imguiController(std::make_unique<ImGuiController>(_window->GetWindowPtr()))
+    , _input(std::make_unique<Input>(_window->GetWindowPtr()))
+    , _camera(std::make_unique<Camera>(Camera()))
+{}
+
 App::~App()
 {
     _imguiController->Shutdown();
-    delete _window;
-    delete _input;
-    delete _camera;
 }
 
 void App::Init()
 {
-    _window = new Window();
-    _imguiController = new ImGuiController(_window->GetWindowPtr());
-    _camera = new Camera();
-    _input = new Input(_window->GetWindowPtr());
-
     _input->ConnectCamera(_camera);
 
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
@@ -71,30 +71,28 @@ void App::GameLoop()
 
 void App::SetPipeline(const PipelineId newPipelineType)
 {
-    DeleteActivePipeline();
-
     switch (newPipelineType)
     {
     case BASIC_LIGHT:
-        _activePipeline = new BasicLightRP();
+        _activePipeline = std::make_unique<BasicLightRP>();
         break;
     case BASIC_MULTIPLE_CUBES:
-        _activePipeline = new BasicMultipleCubesRP();
+        _activePipeline = std::make_unique<BasicMultipleCubesRP>();
         break;
     case LIGHTING_MAPS:
-        _activePipeline = new LightingMaps();
+        _activePipeline = std::make_unique<LightingMaps>();
         break;
     case LIGHT_CASTERS:
-        _activePipeline = new LightCastersRP();
+        _activePipeline = std::make_unique<LightCastersRP>();
         break;
     case MODEL_LOADING:
-        _activePipeline = new ModelLoadingRP();
+        _activePipeline = std::make_unique<ModelLoadingRP>();
         break;
     case MODEL_LOADING_LIT:
-        _activePipeline = new ModelLoadingLitRP();
+        _activePipeline = std::make_unique<ModelLoadingLitRP>();
         break;
     default:
-        _activePipeline = new LightCastersRP();
+        _activePipeline = std::make_unique<LightCastersRP>();
         break;
     }
 
@@ -107,15 +105,6 @@ void App::ClearActivePipeline()
     if (_activePipeline != nullptr)
     {
         _activePipeline->Clear();
-    }
-}
-
-void App::DeleteActivePipeline()
-{
-    if (_activePipeline != nullptr)
-    {
-        _activePipeline->Clear();
-        delete _activePipeline;
     }
 }
 
