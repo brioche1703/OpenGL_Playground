@@ -8,11 +8,13 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include "App.h"
 #include "VertexShader.h"
 #include "FragmentShader.h"
 #include "Window.h"
 #include "Input.h"
 #include "Camera.h"
+#include "GarbageCollection.h"
 
 namespace Playground
 {
@@ -45,7 +47,7 @@ void ModelLoadingLitRP::Init()
     _shaderProgram.AttachShader({vertexShader, fragmentShader});
     _shaderProgram.LinkProgram();
 
-    _model = std::make_unique<Model>("models/backpack/backpack.obj");
+    _model = Entity::Create<Model>("models/backpack/backpack.obj");
 
     vertexShader.Delete();
     fragmentShader.Delete();

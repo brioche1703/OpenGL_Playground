@@ -58,4 +58,8 @@ void Texture::Bind() const
 {
     glBindTexture(_target, _id);
 }
+void Texture::Delete() const
+{
+    glDeleteTextures(1, &_id);
+}
 } // namespace Playground

@@ -19,6 +19,7 @@ public:
 
     void Activate(GLenum target) const;
     void Bind() const;
+    void Delete() const;
 
 private:
     unsigned int _id;

@@ -4,8 +4,10 @@
 
 namespace Playground
 {
+
 class Window;
 class Camera;
+class App;
 
 class RenderingPipeline
 {
@@ -15,4 +17,5 @@ public:
     virtual void Draw(const std::unique_ptr<Window> &window, const std::unique_ptr<Camera> &camera) = 0;
     virtual void Clear() = 0;
 };
+
 } // namespace Playground

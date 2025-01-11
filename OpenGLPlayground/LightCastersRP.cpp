@@ -205,7 +205,6 @@ void LightCastersRP::Draw(const std::unique_ptr<Window> &window, const std::uniq
 
 void LightCastersRP::Clear()
 {
-
     _VAO.Delete();
     _VBO.Delete();
     _shaderProgram.Delete();

@@ -70,7 +70,7 @@ void BasicLightRP::Draw(const std::unique_ptr<Window> &window, const std::unique
     glClearColor(0.2f, 0.2f, 0.3f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    light._position = glm::vec3(cos(glfwGetTime()) * 3, 0.5f, sin(glfwGetTime()) * 3);
+    _light._position = glm::vec3(cos(glfwGetTime()) * 3, 0.5f, sin(glfwGetTime()) * 3);
 
     // Cube
     glm::mat4 model(1.0f);
@@ -86,21 +86,21 @@ void BasicLightRP::Draw(const std::unique_ptr<Window> &window, const std::unique
 
     _shaderProgram.SetUniformLocation(glUniform3fv, "viewPosition", 1, glm::value_ptr(camera->GetPosition()));
 
-    _shaderProgram.SetUniformLocation(glUniform3fv, "material.ambient", 1, glm::value_ptr(material._ambient));
-    _shaderProgram.SetUniformLocation(glUniform3fv, "material.diffuse", 1, glm::value_ptr(material._diffuse));
-    _shaderProgram.SetUniformLocation(glUniform3fv, "material.specular", 1, glm::value_ptr(material._specular));
-    _shaderProgram.SetUniformLocation(glUniform1f, "material.shininess", material._shininess);
+    _shaderProgram.SetUniformLocation(glUniform3fv, "material.ambient", 1, glm::value_ptr(_material._ambient));
+    _shaderProgram.SetUniformLocation(glUniform3fv, "material.diffuse", 1, glm::value_ptr(_material._diffuse));
+    _shaderProgram.SetUniformLocation(glUniform3fv, "material.specular", 1, glm::value_ptr(_material._specular));
+    _shaderProgram.SetUniformLocation(glUniform1f, "material.shininess", _material._shininess);
 
-    _shaderProgram.SetUniformLocation(glUniform3fv, "light.position", 1, glm::value_ptr(light._position));
-    _shaderProgram.SetUniformLocation(glUniform3fv, "light.ambient", 1, glm::value_ptr(light._ambient));
-    _shaderProgram.SetUniformLocation(glUniform3fv, "light.diffuse", 1, glm::value_ptr(light._diffuse));
-    _shaderProgram.SetUniformLocation(glUniform3fv, "light.specular", 1, glm::value_ptr(light._specular));
+    _shaderProgram.SetUniformLocation(glUniform3fv, "light.position", 1, glm::value_ptr(_light._position));
+    _shaderProgram.SetUniformLocation(glUniform3fv, "light.ambient", 1, glm::value_ptr(_light._ambient));
+    _shaderProgram.SetUniformLocation(glUniform3fv, "light.diffuse", 1, glm::value_ptr(_light._diffuse));
+    _shaderProgram.SetUniformLocation(glUniform3fv, "light.specular", 1, glm::value_ptr(_light._specular));
 
     _VAO.Bind();
     glDrawArrays(GL_TRIANGLES, 0, 36);
 
     // Light object
-    model = glm::translate(model, light._position);
+    model = glm::translate(model, _light._position);
     model = glm::scale(model, glm::vec3(0.2f));
 
     _lightCubeShaderProgram.Use();
@@ -108,8 +108,8 @@ void BasicLightRP::Draw(const std::unique_ptr<Window> &window, const std::unique
     _lightCubeShaderProgram.SetUniformLocation(glUniformMatrix4fv, "projection", 1, GL_FALSE,
                                                glm::value_ptr(projection));
     _lightCubeShaderProgram.SetUniformLocation(glUniformMatrix4fv, "model", 1, GL_FALSE, glm::value_ptr(model));
-    _lightCubeShaderProgram.SetUniformLocation(glUniform3fv, "light.ambient", 1, glm::value_ptr(light._ambient));
-    _lightCubeShaderProgram.SetUniformLocation(glUniform3fv, "light.diffuse", 1, glm::value_ptr(light._diffuse));
+    _lightCubeShaderProgram.SetUniformLocation(glUniform3fv, "light.ambient", 1, glm::value_ptr(_light._ambient));
+    _lightCubeShaderProgram.SetUniformLocation(glUniform3fv, "light.diffuse", 1, glm::value_ptr(_light._diffuse));
 
     _VAOLight.Bind();
     glDrawArrays(GL_TRIANGLES, 0, 36);
@@ -117,7 +117,6 @@ void BasicLightRP::Draw(const std::unique_ptr<Window> &window, const std::unique
 
 void BasicLightRP::Clear()
 {
-
     _VAO.Delete();
     _VBO.Delete();
     _shaderProgram.Delete();

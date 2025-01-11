@@ -23,8 +23,8 @@ private:
     VertexArrayObject _VAO, _VAOLight;
     Buffer _VBO;
 
-    PointLight light;
-    Material material;
+    PointLight _light;
+    Material _material;
 };
 
 } // namespace Playground

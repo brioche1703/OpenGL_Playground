@@ -132,7 +132,6 @@ void LightingMaps::Draw(const std::unique_ptr<Window> &window, const std::unique
 
 void LightingMaps::Clear()
 {
-
     _VAO.Delete();
     _VBO.Delete();
     _shaderProgram.Delete();

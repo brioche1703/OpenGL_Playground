@@ -10,12 +10,14 @@
 #include "BasicLightRP.h"
 #include "BasicMultipleCubesRP.h"
 #include "Camera.h"
+#include "EventSystem.h"
 #include "ImGuiController.h"
 #include "Input.h"
 #include "LightCastersRP.h"
 #include "LightingMapsRP.h"
 #include "ModelLoadingLitRP.h"
 #include "ModelLoadingRP.h"
+#include "GarbageCollection.h"
 #include "RenderingPipeline.h"
 #include "Window.h"
 
@@ -25,7 +27,7 @@ App::App() noexcept
     : _window(std::make_unique<Window>())
     , _imguiController(std::make_unique<ImGuiController>(_window->GetWindowPtr()))
     , _input(std::make_unique<Input>(_window->GetWindowPtr()))
-    , _camera(std::make_unique<Camera>(Camera()))
+    , _camera(std::make_unique<Camera>())
 {}
 
 App::~App()
@@ -61,6 +63,8 @@ void App::GameLoop()
         _activePipeline->Draw(_window, _camera);
 
         _imguiController->Render();
+
+        GarbageCollection::GetInstance()->CollectGarbage();
 
         glfwSwapBuffers(_window->GetWindowPtr());
         glfwPollEvents();
