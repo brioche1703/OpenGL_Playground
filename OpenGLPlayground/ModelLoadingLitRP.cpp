@@ -12,6 +12,7 @@
 #include "VertexShader.h"
 #include "FragmentShader.h"
 #include "Window.h"
+#include "ImGuiController.h"
 #include "Input.h"
 #include "Camera.h"
 #include "GarbageCollection.h"
@@ -52,13 +53,54 @@ void ModelLoadingLitRP::Init()
     _lightSystem->Init();
 }
 
+void ModelLoadingLitRP::ImGuiMenu()
+{
+    ImGui::Begin("Settings");
+
+    ImGui::Text("Entities:");
+    ImGui::Spacing();
+    static float posX, posY, posZ = 0.f;
+    ImGui::SliderFloat("pos X", &posX, -100.0f, 100.0f, "ratio = %.3f");
+    ImGui::SliderFloat("pos Y", &posY, -100.0f, 100.0f, "ratio = %.3f");
+    ImGui::SliderFloat("pos Z", &posZ, -100.0f, 100.0f, "ratio = %.3f");
+    _model->SetPosition(glm::vec3(posX, posY, posZ));
+
+    static float lposX, lposY, lposZ = 0.f;
+    ImGui::SliderFloat("lpos X", &lposX, -100.0f, 100.0f, "ratio = %.3f");
+    ImGui::SliderFloat("lpos Y", &lposY, -100.0f, 100.0f, "ratio = %.3f");
+    ImGui::SliderFloat("lpos Z", &lposZ, -100.0f, 100.0f, "ratio = %.3f");
+    _lightSystem->_pointLights[0]->SetPosition(glm::vec3(lposX, lposY, lposZ));
+
+    static float r, g, b, dr, dg, db, sr, sg, sb, c, l, q = 1.f;
+    ImGui::SliderFloat("r", &r, 0.0f, 1.0f, "ratio = %.3f");
+    ImGui::SliderFloat("g", &g, 0.0f, 1.0f, "ratio = %.3f");
+    ImGui::SliderFloat("b", &b, 0.0f, 1.0f, "ratio = %.3f");
+    ImGui::SliderFloat("dr", &r, 0.0f, 1.0f, "ratio = %.3f");
+    ImGui::SliderFloat("dg", &g, 0.0f, 1.0f, "ratio = %.3f");
+    ImGui::SliderFloat("db", &b, 0.0f, 1.0f, "ratio = %.3f");
+    ImGui::SliderFloat("sr", &sr, 0.0f, 1.0f, "ratio = %.3f");
+    ImGui::SliderFloat("sg", &sg, 0.0f, 1.0f, "ratio = %.3f");
+    ImGui::SliderFloat("sb", &sb, 0.0f, 1.0f, "ratio = %.3f");
+    ImGui::SliderFloat("c", &c, 0.0f, 1.0f, "ratio = %.3f");
+    ImGui::SliderFloat("l", &l, 0.0f, 1.0f, "ratio = %.3f");
+    ImGui::SliderFloat("q", &q, 0.0f, 1.0f, "ratio = %.3f");
+    _lightSystem->_pointLights[0]->SetAmbient(glm::vec3(r, g, b));
+    _lightSystem->_pointLights[0]->SetDiffuse(glm::vec3(dr, dg, db));
+    _lightSystem->_pointLights[0]->SetSpecular(glm::vec3(sr, sg, sb));
+    _lightSystem->_pointLights[0]->SetConstant(c);
+    _lightSystem->_pointLights[0]->SetLinear(l);
+    _lightSystem->_pointLights[0]->SetQuadratic(q);
+
+    ImGui::End();
+}
+
 void ModelLoadingLitRP::Draw(const std::unique_ptr<Window> &window, const std::unique_ptr<Camera> &camera)
 {
     glClearColor(0.2f, 0.2f, 0.3f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     // Cube
-    glm::mat4 model(1.0f);
+    glm::mat4 model = _model->GetModelMatrix();
     glm::mat4 view = camera->LookAt();
     glm::mat4 projection(1.0f);
     projection = glm::perspective(glm::radians(camera->GetFov()),

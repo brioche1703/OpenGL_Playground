@@ -19,6 +19,8 @@ public:
     virtual void Draw(const std::unique_ptr<Window> &window, const std::unique_ptr<Camera> &camera) override;
     virtual void Clear() override;
 
+    void ImGuiMenu() override;
+
 private:
     ShaderProgram _shaderProgram;
     std::unique_ptr<LightSystem> _lightSystem;

@@ -59,6 +59,7 @@ void App::GameLoop()
 
         _imguiController->SetRender();
         ImGuiMenu();
+        _activePipeline->ImGuiMenu();
 
         _activePipeline->Draw(_window, _camera);
 

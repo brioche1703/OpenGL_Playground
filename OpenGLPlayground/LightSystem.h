@@ -22,6 +22,8 @@ public:
 
 private:
     std::shared_ptr<DirectionalLight> _directionalLight;
+
+public:
     std::vector<std::shared_ptr<PointLight>> _pointLights;
     std::vector<std::shared_ptr<SpotLight>> _spotLights;
 
