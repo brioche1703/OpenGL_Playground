@@ -29,6 +29,11 @@ Window::Window()
     glfwSetFramebufferSizeCallback(_window, framebuffer_size_callback);
 }
 
+Window::~Window()
+{
+    glfwDestroyWindow(_window);
+}
+
 bool Window::ShouldClose() const
 {
     return glfwWindowShouldClose(_window);

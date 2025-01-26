@@ -2,18 +2,20 @@
 
 #include <glm/glm.hpp>
 
+#include "LightBase.h"
+
 namespace Playground
 {
-struct PointLight
+class PointLight : public LightBase
 {
-    glm::vec3 _position = glm::vec3(0.0f);
-
-    glm::vec3 _ambient = glm::vec3(0.2f);
-    glm::vec3 _diffuse = glm::vec3(0.5f);
-    glm::vec3 _specular = glm::vec3(1.0f);
-
-    float _constant = 1.0f;
-    float _linear = 0.09f;
-    float _quadratic = 0.032f;
+public:
+    PointLight(const std::string &name)
+        : LightBase(name)
+    {}
+    PointLight(const std::string &name, const glm::vec3& position)
+        : LightBase(name)
+    {
+        SetPosition(position);
+    }
 };
 } // namespace Playground

@@ -14,16 +14,16 @@ namespace Playground
 class LightSystem
 {
 public:
-    LightSystem(std::vector<PointLight> pointLights);
+    LightSystem(std::vector<std::shared_ptr<PointLight>> pointLights);
 
     void Init();
     void SetUniforms(const ShaderProgram &shaderProgram, const glm::mat4 &view, const glm::mat4 &proj);
     void DrawLightsObjects(const glm::mat4 &view, const glm::mat4 &proj);
 
 private:
-    DirectionalLight _directionalLight;
-    std::vector<PointLight> _pointLights;
-    std::vector<SpotLight> _spotLights;
+    std::shared_ptr<DirectionalLight> _directionalLight;
+    std::vector<std::shared_ptr<PointLight>> _pointLights;
+    std::vector<std::shared_ptr<SpotLight>> _spotLights;
 
     ShaderProgram _lightCubeShaderProgram;
     VertexArrayObject _VAOLight;

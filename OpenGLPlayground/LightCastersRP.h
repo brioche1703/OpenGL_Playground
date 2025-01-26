@@ -29,9 +29,9 @@ private:
     VertexArrayObject _VAO, _VAOLight;
     Buffer _VBO;
 
-    DirectionalLight _directionalLight;
-    std::vector<PointLight> _pointLights;
-    SpotLight _spotLight;
+    std::shared_ptr<DirectionalLight> _directionalLight;
+    std::vector<std::shared_ptr<PointLight>> _pointLights;
+    std::shared_ptr<SpotLight> _spotLight;
 
     Material _material;
 

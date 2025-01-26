@@ -94,7 +94,6 @@ void BasicMultipleCubesRP::Draw(const std::unique_ptr<Window> &window, const std
 
 void BasicMultipleCubesRP::Clear()
 {
-
     _VAO.Delete();
     _VBO.Delete();
     _shaderProgram.Delete();

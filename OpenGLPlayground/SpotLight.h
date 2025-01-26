@@ -2,21 +2,28 @@
 
 #include <glm/glm.hpp>
 
+#include "LightBase.h"
+
 namespace Playground
 {
-struct SpotLight
+class SpotLight : public LightBase
 {
-    glm::vec3 _position = glm::vec3(0.0f);
+public:
+    SpotLight(const std::string &name)
+        : LightBase(name)
+    {}
+
+    inline glm::vec3 &GetDirection() { return _direction; }
+    inline float &GetCutOffAngle() { return _cutOffAngle; }
+    inline float &GetOuterCutOffAngle() { return _outerCutOffAngle; }
+
+    inline void SetDirection(const glm::vec3 &direction) { _direction = direction; }
+    inline void SetCutOffAngle(float cutOffAngle) { _cutOffAngle = cutOffAngle; }
+    inline void SetOuterCutOffAngle(float outerCutOffAngle) { _outerCutOffAngle = outerCutOffAngle; }
+
+private:
     glm::vec3 _direction = glm::vec3(0.2f);
     float _cutOffAngle = glm::cos(glm::radians(4.0f));
     float _outerCutOffAngle = glm::cos(glm::radians(4.0f));
-
-    glm::vec3 _ambient = glm::vec3(0.2f);
-    glm::vec3 _diffuse = glm::vec3(0.5f);
-    glm::vec3 _specular = glm::vec3(1.0f);
-
-    float _constant = 1.0f;
-    float _linear = 0.09f;
-    float _quadratic = 0.032f;
 };
 } // namespace Playground

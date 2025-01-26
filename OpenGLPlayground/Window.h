@@ -10,6 +10,9 @@ class Window
 {
 public:
     Window();
+    ~Window();
+    Window(const Window &) = delete;
+    Window &operator=(const Window &) = delete;
 
     inline GLFWwindow *GetWindowPtr() const { return _window; };
     inline int GetWidth() const { return _width; }

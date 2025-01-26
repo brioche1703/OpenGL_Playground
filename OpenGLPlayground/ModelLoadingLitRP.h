@@ -22,7 +22,7 @@ public:
 private:
     ShaderProgram _shaderProgram;
     std::unique_ptr<LightSystem> _lightSystem;
-    std::unique_ptr<Model> _model;
+    std::shared_ptr<Model> _model;
 };
 
 } // namespace Playground

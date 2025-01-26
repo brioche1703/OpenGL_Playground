@@ -5,21 +5,21 @@
 
 #include "ShaderProgram.h"
 #include "Texture.h"
+#include "Mesh.h"
+#include "EventSystem.h"
 
 namespace Playground
 {
 Model::Model(const std::string &path, bool gamma)
-    : _gammaCorrection(gamma)
+    : SceneActor(path)
+    , _gammaCorrection(gamma)
 {
     LoadModel(path);
 }
 
 Model::~Model()
 {
-    std::vector<unsigned int> indices;
-    std::transform(_textures_loaded.begin(), _textures_loaded.end(), std::back_inserter(indices),
-                   [](Texture t) { return t.GetID(); });
-    glDeleteTextures(_textures_loaded.size(), &indices[0]);
+    std::for_each(_textures_loaded.begin(), _textures_loaded.end(), [](Texture t) { return t.Delete(); });
 }
 
 void Model::Draw(ShaderProgram &shaderProgram)
@@ -30,7 +30,7 @@ void Model::Draw(ShaderProgram &shaderProgram)
     }
 }
 
-void Model::LoadModel(std::string path)
+void Model::LoadModel(const std::string& path)
 {
     Assimp::Importer importer;
     const aiScene *scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_GenSmoothNormals |
@@ -135,6 +135,7 @@ Mesh Model::ProcessMesh(aiMesh *mesh, const aiScene *scene)
     return Mesh(vertices, indices, textures);
 }
 
+// TODO: Use reference instead of copy or pointers
 std::vector<Texture> Model::LoadMaterialTextures(aiMaterial *mat, aiTextureType type, std::string typeName)
 {
     std::vector<Texture> textures;

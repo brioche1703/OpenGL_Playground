@@ -11,6 +11,8 @@ class Input;
 class Camera;
 class RenderingPipeline;
 class ImGuiController;
+class EventSystem;
+class GarbageCollection;
 
 class App
 {

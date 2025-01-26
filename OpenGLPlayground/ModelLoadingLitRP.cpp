@@ -8,11 +8,13 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include "App.h"
 #include "VertexShader.h"
 #include "FragmentShader.h"
 #include "Window.h"
 #include "Input.h"
 #include "Camera.h"
+#include "GarbageCollection.h"
 
 namespace Playground
 {
@@ -23,19 +25,16 @@ void ModelLoadingLitRP::Init()
     glm::vec3 pointLightPositions[] = {glm::vec3(0.7f, 0.2f, 2.0f), glm::vec3(2.3f, -3.3f, -4.0f),
                                        glm::vec3(-4.0f, 2.0, -12.0), glm::vec3(0.0f, 0.0f, -3.0f)};
 
-    glm::vec3 pointLightColors[] = {glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(1.0f, 0.0f, 0.0f), glm::vec3(1.0f, 0.0, 0.0),
-                                    glm::vec3(1.0f, 0.0f, 0.0f)};
-
-    std::vector<PointLight> pointLights;
+    std::vector<std::shared_ptr<PointLight>> pointLights;
     pointLights.reserve(pointLightPositions->length());
     pointLights.push_back(
-        PointLight(pointLightPositions[0], pointLightColors[0], pointLightColors[0], pointLightColors[0]));
+        Entity::Create<PointLight>("PointLight1", pointLightPositions[0]));
     pointLights.push_back(
-        PointLight(pointLightPositions[1], pointLightColors[1], pointLightColors[1], pointLightColors[1]));
+        Entity::Create<PointLight>("PointLight2", pointLightPositions[1]));
     pointLights.push_back(
-        PointLight(pointLightPositions[2], pointLightColors[2], pointLightColors[2], pointLightColors[2]));
+        Entity::Create<PointLight>("PointLight3", pointLightPositions[2]));
     pointLights.push_back(
-        PointLight(pointLightPositions[3], pointLightColors[3], pointLightColors[3], pointLightColors[3]));
+        Entity::Create<PointLight>("PointLight4", pointLightPositions[3]));
 
     _lightSystem = std::make_unique<LightSystem>(pointLights);
 
@@ -45,7 +44,7 @@ void ModelLoadingLitRP::Init()
     _shaderProgram.AttachShader({vertexShader, fragmentShader});
     _shaderProgram.LinkProgram();
 
-    _model = std::make_unique<Model>("models/backpack/backpack.obj");
+    _model = Entity::Create<Model>("models/backpack/backpack.obj");
 
     vertexShader.Delete();
     fragmentShader.Delete();

@@ -41,12 +41,13 @@ private:
     void SetupMesh();
 
 private:
-    std::vector<Vertex> _vertices;
-    std::vector<unsigned int> _indices;
-    std::vector<Texture> _textures;
     float _shininess = 64.0f;
 
     VertexArrayObject _VAO;
     Buffer _VBO, _EBO;
+
+    std::vector<Vertex> _vertices;
+    std::vector<unsigned int> _indices;
+    std::vector<Texture> _textures;
 };
 } // namespace Playground

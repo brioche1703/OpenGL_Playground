@@ -23,6 +23,7 @@ namespace Playground
 void LightingMaps::Init()
 {
     CubeMesh cube;
+    _light = Entity::Create<PointLight>("PointLight");
 
     // Cube
     VertexShader vertexShader("shaders/shader_vs.glsl");
@@ -77,7 +78,7 @@ void LightingMaps::Draw(const std::unique_ptr<Window> &window, const std::unique
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     const float radius = 6.0f;
-    light._position = glm::vec3(cos(glfwGetTime()) * radius, 0.5f, sin(glfwGetTime()) * radius);
+    _light->SetPosition(glm::vec3(cos(glfwGetTime()) * radius, 0.5f, sin(glfwGetTime()) * radius));
 
     // Cube
     glm::mat4 model(1.0f);
@@ -96,13 +97,13 @@ void LightingMaps::Draw(const std::unique_ptr<Window> &window, const std::unique
     _shaderProgram.SetUniformLocation(glUniform1i, "material.diffuse", 0);
     _shaderProgram.SetUniformLocation(glUniform1i, "material.specular", 1);
     _shaderProgram.SetUniformLocation(glUniform1i, "material.emissive", 2);
-    _shaderProgram.SetUniformLocation(glUniform3fv, "material.specular", 1, glm::value_ptr(material._specular));
-    _shaderProgram.SetUniformLocation(glUniform1f, "material.shininess", material._shininess);
+    _shaderProgram.SetUniformLocation(glUniform3fv, "material.specular", 1, glm::value_ptr(_material._specular));
+    _shaderProgram.SetUniformLocation(glUniform1f, "material.shininess", _material._shininess);
 
-    _shaderProgram.SetUniformLocation(glUniform3fv, "light.position", 1, glm::value_ptr(light._position));
-    _shaderProgram.SetUniformLocation(glUniform3fv, "light.ambient", 1, glm::value_ptr(light._ambient));
-    _shaderProgram.SetUniformLocation(glUniform3fv, "light.diffuse", 1, glm::value_ptr(light._diffuse));
-    _shaderProgram.SetUniformLocation(glUniform3fv, "light.specular", 1, glm::value_ptr(light._specular));
+    _shaderProgram.SetUniformLocation(glUniform3fv, "light.position", 1, glm::value_ptr(_light->GetPosition()));
+    _shaderProgram.SetUniformLocation(glUniform3fv, "light.ambient", 1, glm::value_ptr(_light->GetAmbient()));
+    _shaderProgram.SetUniformLocation(glUniform3fv, "light.diffuse", 1, glm::value_ptr(_light->GetDiffuse()));
+    _shaderProgram.SetUniformLocation(glUniform3fv, "light.specular", 1, glm::value_ptr(_light->GetSpecular()));
 
     _textureContainer.Activate(GL_TEXTURE0);
     _textureContainer.Bind();
@@ -115,7 +116,7 @@ void LightingMaps::Draw(const std::unique_ptr<Window> &window, const std::unique
     glDrawArrays(GL_TRIANGLES, 0, 36);
 
     // Light object
-    model = glm::translate(model, light._position);
+    model = glm::translate(model, _light->GetPosition());
     model = glm::scale(model, glm::vec3(0.2f));
 
     _lightCubeShaderProgram.Use();
@@ -123,8 +124,8 @@ void LightingMaps::Draw(const std::unique_ptr<Window> &window, const std::unique
     _lightCubeShaderProgram.SetUniformLocation(glUniformMatrix4fv, "projection", 1, GL_FALSE,
                                                glm::value_ptr(projection));
     _lightCubeShaderProgram.SetUniformLocation(glUniformMatrix4fv, "model", 1, GL_FALSE, glm::value_ptr(model));
-    _lightCubeShaderProgram.SetUniformLocation(glUniform3fv, "light.ambient", 1, glm::value_ptr(light._ambient));
-    _lightCubeShaderProgram.SetUniformLocation(glUniform3fv, "light.diffuse", 1, glm::value_ptr(light._diffuse));
+    _lightCubeShaderProgram.SetUniformLocation(glUniform3fv, "light.ambient", 1, glm::value_ptr(_light->GetAmbient()));
+    _lightCubeShaderProgram.SetUniformLocation(glUniform3fv, "light.diffuse", 1, glm::value_ptr(_light->GetDiffuse()));
 
     _VAOLight.Bind();
     glDrawArrays(GL_TRIANGLES, 0, 36);
@@ -132,7 +133,6 @@ void LightingMaps::Draw(const std::unique_ptr<Window> &window, const std::unique
 
 void LightingMaps::Clear()
 {
-
     _VAO.Delete();
     _VBO.Delete();
     _shaderProgram.Delete();
