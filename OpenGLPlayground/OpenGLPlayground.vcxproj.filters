@@ -162,6 +162,9 @@
     <ClCompile Include="glad.c">
       <Filter>Source Files\external</Filter>
     </ClCompile>
+    <ClCompile Include="SceneActor.cpp">
+      <Filter>Source Files\CoreEngine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="libs\stb_image.h">
@@ -278,9 +281,6 @@
     <ClInclude Include="ModelLoadingRP.h">
       <Filter>Header Files\Pipelines</Filter>
     </ClInclude>
-    <ClInclude Include="ModelLoadingLitRP.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="LightSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -292,6 +292,15 @@
     </ClInclude>
     <ClInclude Include="EventSystem.h">
       <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneActor.h">
+      <Filter>Header Files\CoreEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelLoadingLitRP.h">
+      <Filter>Header Files\Pipelines</Filter>
+    </ClInclude>
+    <ClInclude Include="LightBase.h">
+      <Filter>Header Files\CoreEngine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

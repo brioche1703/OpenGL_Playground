@@ -4,12 +4,12 @@
 
 namespace Playground
 {
-Entity::Entity(const std::string &path)
-    : _path(path)
+Entity::Entity(const std::string &name)
+    : _name(name)
 {}
 
 Entity::~Entity()
 {
-    EventSystem::GetInstance()->NotifyEntityRemoved(_path);
+    EventSystem::GetInstance()->NotifyEntityRemoved(_name);
 }
 } // namespace Playground

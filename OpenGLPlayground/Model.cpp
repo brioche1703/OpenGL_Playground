@@ -11,7 +11,7 @@
 namespace Playground
 {
 Model::Model(const std::string &path, bool gamma)
-    : Entity(path)
+    : SceneActor(path)
     , _gammaCorrection(gamma)
 {
     LoadModel(path);

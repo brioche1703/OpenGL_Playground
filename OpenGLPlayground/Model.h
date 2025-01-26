@@ -6,7 +6,7 @@
 
 #include <vector>
 
-#include "Entity.h"
+#include "SceneActor.h"
 
 namespace Playground
 {
@@ -14,7 +14,7 @@ class Texture;
 class Mesh;
 class ShaderProgram;
 
-class Model : public Entity
+class Model : public SceneActor
 {
 public:
     Model(const std::string &path, bool gamma = false);

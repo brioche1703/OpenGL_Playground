@@ -183,6 +183,7 @@
     <ClCompile Include="ModelLoadingLitRP.cpp" />
     <ClCompile Include="ModelLoadingRP.cpp" />
     <ClCompile Include="GarbageCollection.cpp" />
+    <ClCompile Include="SceneActor.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
     <ClCompile Include="stb_image.cpp" />
@@ -215,12 +216,14 @@
     <ClInclude Include="ImGuiController.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="libs\stb_image.h" />
+    <ClInclude Include="LightBase.h" />
     <ClInclude Include="LightCastersRP.h" />
     <ClInclude Include="LightingMapsRP.h" />
     <ClInclude Include="LightSystem.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="ModelLoadingLitRP.h" />
     <ClInclude Include="GarbageCollection.h" />
+    <ClInclude Include="SceneActor.h" />
     <ClInclude Include="SimpleMesh.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Model.h" />

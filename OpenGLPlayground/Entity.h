@@ -35,31 +35,31 @@ class Entity : public RefCounter
 {
 public:
     template <typename T, typename... Args>
-    static std::shared_ptr<T> Create(const std::string& path, Args&&... args);
+    static std::shared_ptr<T> Create(const std::string& name, Args&&... args);
 
     virtual ~Entity();
 
 protected:
-    Entity(const std::string &path);
+    Entity(const std::string &name);
 
 protected:
-    std::string _path;
+    std::string _name;
 };
 
 template <typename T, typename... Args> 
-std::shared_ptr<T> Entity::Create(const std::string& path, Args &&...args)
+std::shared_ptr<T> Entity::Create(const std::string& name, Args &&...args)
 {
     // Check if entity already exists
     const std::map<std::string, std::shared_ptr<Entity>>& entityMap = GarbageCollection::GetInstance()->GetEntities();
-    auto it = entityMap.find(path);
+    auto it = entityMap.find(name);
     if (it != entityMap.end())
     {
         return std::static_pointer_cast<T>(it->second);
     }
 
-    auto entity = std::shared_ptr<T>(new T(path, std::forward<Args>(args)...));
+    auto entity = std::shared_ptr<T>(new T(name, std::forward<Args>(args)...));
     entity->InitializeSelf(entity);
-    EventSystem::GetInstance()->NotifyEntityCreated(entity->_path, entity);
+    EventSystem::GetInstance()->NotifyEntityCreated(entity->_name, entity);
     return entity;
 }
 } // namespace Playground

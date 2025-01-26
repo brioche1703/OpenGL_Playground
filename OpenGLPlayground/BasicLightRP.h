@@ -23,7 +23,7 @@ private:
     VertexArrayObject _VAO, _VAOLight;
     Buffer _VBO;
 
-    PointLight _light;
+    std::shared_ptr<PointLight> _light;
     Material _material;
 };
 

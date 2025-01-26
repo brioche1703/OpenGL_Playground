@@ -24,8 +24,8 @@ private:
     VertexArrayObject _VAO, _VAOLight;
     Buffer _VBO;
 
-    PointLight light;
-    Material material;
+    std::shared_ptr<PointLight> _light;
+    Material _material;
 
     Texture _textureContainer = Texture("images/container2.png", GL_TEXTURE_2D, true);
     Texture _textureContainerSpecular = Texture("images/container2_specular.png", GL_TEXTURE_2D, true);
